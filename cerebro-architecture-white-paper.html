@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cerebro: Operator-Owned AI Infrastructure as a Governance Discipline — v1.3.3-public</title>
+<style>
+@page {
+  size: A4;
+  margin: 20mm 18mm 24mm 18mm;
+  @bottom-center {
+    content: "Cerebro Cyber Solutions  ·  " "v1.3.3-public" "  ·  page " counter(page);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 8pt;
+    color: #6e7781;
+  }
+}
+
+@page :first {
+  @bottom-center { content: ""; }
+}
+
+:root {
+  --text: #21262d;
+  --muted: #6e7781;
+  --blue: #1e40af;
+  --blue-bright: #3b82f6;
+  --accent: #0969da;
+  --border: #d0d7de;
+  --code-bg: #f6f8fa;
+  --table-header: #f1f3f5;
+  --table-row-alt: #fafbfc;
+}
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  font-size: 10.5pt;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 100%;
+}
+
+/* Cover page */
+.cover {
+  page-break-after: always;
+  break-after: page;
+  padding: 30mm 0 0 0;
+  height: 230mm;
+  max-height: 230mm;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.cover .accent-bar {
+  width: 60mm;
+  height: 2mm;
+  background: var(--blue);
+  margin-bottom: 8mm;
+}
+
+.cover h1.title {
+  font-size: 32pt;
+  font-weight: 700;
+  margin: 0 0 2mm 0;
+  color: var(--text);
+}
+
+.cover h2.subtitle {
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 0 0 6mm 0;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.cover .tagline {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 12pt;
+  line-height: 1.4;
+  margin: 0 0 16mm 0;
+}
+
+.cover .divider {
+  width: 80mm;
+  height: 0.3mm;
+  background: var(--border);
+  margin: 0 0 6mm 0;
+}
+
+.cover .author {
+  font-size: 11pt;
+  margin: 0;
+}
+
+.cover .author-org {
+  font-size: 11pt;
+  margin: 0 0 4mm 0;
+}
+
+.cover .meta {
+  color: var(--muted);
+  font-size: 10pt;
+  margin: 0;
+}
+
+.cover .footnote {
+  position: absolute;
+  bottom: 12mm;
+  left: 0;
+  right: 0;
+  font-style: italic;
+  font-size: 9pt;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Body */
+h1 {
+  color: var(--blue);
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 8mm 0 3mm 0;
+  border-bottom: 0.5mm solid var(--blue-bright);
+  padding-bottom: 2mm;
+  page-break-after: avoid;
+}
+
+h2 {
+  color: var(--blue);
+  font-size: 14pt;
+  font-weight: 700;
+  margin: 6mm 0 3mm 0;
+  page-break-after: avoid;
+}
+
+h3 {
+  color: var(--text);
+  font-size: 12pt;
+  font-weight: 700;
+  margin: 5mm 0 2mm 0;
+  page-break-after: avoid;
+}
+
+h4 {
+  color: var(--text);
+  font-size: 11pt;
+  font-weight: 700;
+  margin: 4mm 0 2mm 0;
+  page-break-after: avoid;
+}
+
+h5, h6 {
+  color: var(--text);
+  font-size: 10.5pt;
+  font-weight: 700;
+  margin: 3mm 0 1.5mm 0;
+}
+
+p {
+  margin: 0 0 3mm 0;
+  text-align: left;
+  hyphens: none;
+  -webkit-hyphens: none;
+  word-break: keep-all;
+}
+
+ul, ol {
+  margin: 0 0 3mm 0;
+  padding-left: 6mm;
+}
+
+li {
+  margin: 0 0 1mm 0;
+}
+
+li > p { margin-bottom: 1mm; }
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+code {
+  font-family: 'SF Mono', Menlo, Consolas, 'Roboto Mono', monospace;
+  font-size: 9pt;
+  background: var(--code-bg);
+  padding: 0.4mm 1mm;
+  border-radius: 1mm;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 0.2mm solid var(--border);
+  border-radius: 1.5mm;
+  padding: 3mm 4mm;
+  margin: 0 0 3mm 0;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 8.5pt;
+  line-height: 1.4;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+hr {
+  border: none;
+  border-top: 0.2mm solid var(--border);
+  margin: 5mm 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 4mm 0;
+  font-size: 9.5pt;
+  page-break-inside: auto;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tr {
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+th {
+  background: var(--table-header);
+  color: var(--text);
+  font-weight: 700;
+  text-align: left;
+  padding: 2mm 2.5mm;
+  border: 0.2mm solid var(--border);
+  vertical-align: top;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+td {
+  padding: 2mm 2.5mm;
+  border: 0.2mm solid var(--border);
+  vertical-align: top;
+  word-wrap: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--table-row-alt);
+}
+
+/* Avoid orphans/widows */
+p, li { orphans: 3; widows: 3; }
+
+/* Long inline code in tables should break */
+table code {
+  word-break: break-all;
+  white-space: normal;
+}
+
+/* Pull-quote / blockquote */
+blockquote {
+  margin: 0 0 3mm 0;
+  padding: 2mm 4mm;
+  border-left: 1mm solid var(--blue-bright);
+  background: var(--code-bg);
+  color: var(--text);
+  font-style: italic;
+  page-break-before: avoid;
+  break-before: avoid;
+}
+
+/* Keep lead-in paragraph with its blockquote (no orphan-split) */
+p:has(+ blockquote) {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+blockquote p { margin-bottom: 0; }
+
+/* Force section breaks before top-level headings (optional) */
+h1.section-break, h2.section-break { page-break-before: always; }
+h3.page-break-before, h2.page-break-before { page-break-before: always; }
+</style>
+</head>
+<body data-version="v1.3.3-public">
+
+<div class="cover">
+  <div class="accent-bar"></div>
+  <h1 class="title">Cerebro</h1>
+  <h2 class="subtitle">Operator-Owned AI Infrastructure<br/>as a Governance Discipline</h2>
+  <p class="tagline">A 45-Day Research-Driven Engineering Sprint Toward Audit-Ready,<br/>Reversible, Sovereign AI Operations</p>
+  <div class="divider"></div>
+  <p class="author-org">Cerebro Cyber Solutions  ·  SDVOSB</p>
+  <p class="meta">Version  v1.3.3-public</p>
+  <p class="meta">Date  2026-05-27</p>
+  <p class="footnote">Audit-readiness by construction. Three independent audit rounds + founder OPSEC review closed REVISE-convergent.</p>
+</div>
+
+<main>
+<p><em>Cerebro Cyber Solutions · SDVOSB · 2026-05-21</em></p>
+<h2 id="foreword">Foreword</h2>
+<p>This paper documents what one operator built in 45 days, why the architecture turned out the way it did, and the doctrine that emerged when a regulated-industry context met a frontier-velocity build.</p>
+<p>It is not a marketing brochure. It is a research report. Three independent peer architecture reviews — Codex (OpenAI, external SME), Claude Code (inside operator), and Hermes-on-hub (Anthropic-engineer framing) — were commissioned blind. Their outputs were reconciled into a single synthesis. The findings that survived all three vantages are what this paper anchors on. The disagreements that survived are documented honestly, because honest contradiction-naming is itself part of the doctrine.</p>
+<p>If you read one section, read <strong>§5 (Reversibility as a Design Primitive)</strong>. That is the single most defensible architectural claim Cerebro makes.</p>
+<p>If you read two, add <strong>§4 (The Principle Framework)</strong>. That is the IP package.</p>
+<p>If you read three, add <strong>§6 (Memory Architecture)</strong>. That is what differentiates Cerebro from agent-as-prompt-wrapper systems.</p>
+<p>The rest is supporting structure, honest production status, comparative context, and roadmap.</p>
+<hr />
+<h2 id="1-the-problem">1. The Problem</h2>
+<p>A small operator in a regulated industry needs every one of the following at once:</p>
+<ol>
+<li><strong>AI-native productivity</strong> comparable to teams ten times larger.</li>
+<li><strong>Audit-ready execution</strong> acceptable to GovCon, CMMC, FedRAMP, IL5 procurement.</li>
+<li><strong>Operator-owned data and inference</strong>, because the customers cannot ship sensitive workloads to a third-party SaaS.</li>
+<li><strong>Reversible change</strong>, because mistakes in a one-person company cannot be absorbed by a team.</li>
+<li><strong>Visible governance</strong>, because regulators, primes, and certifying bodies want to see how decisions are made — not just what was decided.</li>
+<li><strong>Mobile-operator workflow</strong>, because real work happens between meetings, in cars, on phones.</li>
+</ol>
+<p>None of these are individually novel. The combination is. Most agent frameworks optimize for one or two of these axes — usually 1 and 6. The remaining four are treated as future work. For a Service-Disabled-Veteran-Owned-Small-Business (SDVOSB) building toward GovCon, that prioritization is backwards. Audit-readiness and reversibility cannot be retrofitted onto a system that was designed for "ship first, document later."</p>
+<p>Cerebro was built from the other end. The question was not "how do I get an agent to do useful work?" — that part is now commodity. The question was: <strong>how do I run an AI-native company as infrastructure, so that every model call, memory write, workflow transition, and autonomous action has provenance, policy, and a rollback path?</strong></p>
+<p>The answer turned out to require not new tools, but a new operating discipline.</p>
+<hr />
+<h2 id="2-the-thesis">2. The Thesis</h2>
+<blockquote>
+<p><strong>A small operator can run an AI-native company if the company itself is implemented as infrastructure: memory, decisions, workflows, agents, models, and governance all live in versioned, inspectable, operator-owned systems.</strong></p>
+</blockquote>
+<p>That sentence is the spine of everything that follows. It was written by Codex (OpenAI) in its third-party review, not by the operator. The fact that an external reviewer recognized it as the underlying architectural thesis — without being told — is itself a signal that the thesis is coherent, not retrofitted.</p>
+<p>Three implications follow:</p>
+<p><strong>(a) Tools are commodity. Operating discipline is the moat.</strong> Any operator can buy a Claude Code subscription, an Ollama install, and a Qdrant instance. None of that is differentiating. What differentiates is the rules under which those tools are allowed to write, dispatch, remember, and act — and the rules under which the operator allows their own work to be governed by those rules.</p>
+<p><strong>(b) The company <em>is</em> the codebase.</strong> Decisions are committed. Handoffs are committed. Memory corrections are committed. Sessions are committed. If a regulator wants to see "how did you decide to do X on Tuesday," the answer is a git SHA and a decision document, not a memory or a Slack message.</p>
+<p><strong>(c) Governance is architecture, not paperwork.</strong> Hermes's analysis names this explicitly: <em>"These aren't values — they're load-bearing architectural constraints, the kind only seen in safety-critical systems (aerospace, medical devices, financial infrastructure)."</em> When a principle constrains where code can be written, what credentials can be touched, which surface can dispatch what action, and what must be reversible before mutation — the principle is part of the runtime, not the culture deck.</p>
+<hr />
+<h2 id="3-the-four-layer-architecture">3. The Four-Layer Architecture</h2>
+<p>Cerebro is organized as four layers, each with its own governance posture and reversibility model.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│  Layer 1 — BRAIN  (knowledge · decisions · narrative · sessions)    │
+│           why-the-system-is + audit trail of every material change  │
+├─────────────────────────────────────────────────────────────────────┤
+│  Layer 2 — SKILLS  (workflows · SKILL.md · ritual contracts)        │
+│           reusable operator workflows with declared scope contracts │
+├─────────────────────────────────────────────────────────────────────┤
+│  Layer 3 — AGENT RUNTIME  (Claude Code · Codex · Hermes · daemons)  │
+│           the executors that compose, dispatch, and act             │
+├─────────────────────────────────────────────────────────────────────┤
+│  Layer 4 — FLEET  (prime-alpha · nexus · hub · prime · substrate)   │
+│           local + cloud inference, services, vector store, mesh     │
+└─────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<p>Each layer has its own governance and Reversibility posture. Brain writes are append-mostly with supersession (never overwrite). Skills are scope-contracted (least privilege #7). Agent Runtime is allowlisted (paths + commands). Fleet is origin-policied (where the weights come from, where the tools come from).</p>
+<p><strong>Layer 4 Fleet — physical and network detail.</strong> The fleet is four physical nodes plus a substrate layer (Ollama / LiteLLM / Qdrant) bound together by a Tailscale private mesh. <code>prime-alpha</code> (64GB DDR5 / RTX 4090) is the primary GPU muscle and serves the Senior Advisor + autoresearch + composer-bench workloads. <code>nexus</code> (24GB workstation) is the authoring surface. <code>hub</code> (16GB services node) runs the LiteLLM gateway + Qdrant + the 24/7 Hermes Telegram composer + scheduled launchd jobs. <code>prime</code> (32GB / RTX 3080) is dormant backup. The hub services run as three Docker containers on a private <code>cerebro-net</code> bridge — <code>cerebro-litellm</code> (model-routing proxy), <code>cerebro-postgres</code> (LiteLLM backing store), and <code>cerebro-qdrant</code> (vector DB with seven collections). The Hermes Telegram composer is deliberately a host process (not containerized) because it needs direct filesystem access to <code>~/.hermes/</code> for kanban + memory state. Container choice is policy: substrate services with stable boundaries get containerized for Reversibility (pin image, snapshot volume, blue/green-swap on upgrade — see <code>decisions/2026-04-19-adr-003-qdrant-client-server-version-policy.md</code>); composers and orchestrators that need filesystem read/write across many host paths stay as host processes. The RTX 4090 build-out on <code>prime-alpha</code> produced a ~14× latency improvement over the prior dormant-backup configuration on Gemma 4 31B (1.75 → 25.38 tok/sec, Phase 6 50-prompt benchmark). The Tailscale mesh keeps every inter-node command on private infrastructure — no port is exposed to the public internet. The fleet is small enough that the operator knows every node by name; large enough that the routing matrix has meaningful choices. That sizing is intentional.</p>
+<p>The four-layer model is not aesthetic. It is what allows the operator to answer four questions about any artifact without ambiguity:</p>
+<ol>
+<li><em>Where does this live?</em> — one of four layers.</li>
+<li><em>Who can change it?</em> — declared in the scope contract at that layer.</li>
+<li><em>How is the change reversible?</em> — declared in the principle that governs that layer.</li>
+<li><em>What audit trail does the change leave?</em> — a decision doc, a sessionend writeback, a commit SHA, or all three.</li>
+</ol>
+<p>Codex's verdict: <em>"This is a legitimate platform architecture. Its primitives are not only AI models and prompts, but state, routing, memory, role separation, reversibility, and auditability."</em></p>
+<hr />
+<h2 id="4-the-principle-framework-and-four-doctrines">4. The Principle Framework (and Four Doctrines)</h2>
+<p>The principle framework is what every reviewer named as the moat. Nine principles. Four doctrines. Each one is ref-implemented in a real surface; none of them are aspirational.</p>
+<h3 id="the-nine-principles">The Nine Principles</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Principle</th>
+<th>What it constrains</th>
+<th>Ref-implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Governance</strong></td>
+<td>Where data lives (department brains stay dept-local)</td>
+<td><code>BRAIN_GOVERNANCE.md</code> chain-of-command</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Parity</strong></td>
+<td>Skills track architecture in the same session as the architecture changes</td>
+<td><code>sessionend</code> Step 7.5 Writeback Guard</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Lockstep</strong></td>
+<td>Rollups (dashboard, awareness, memory) update in the same session as source-of-truth artifacts</td>
+<td>Writeback Guard + <code>sessionend</code> enforcement</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Human-in-the-Mix</strong></td>
+<td>Automation halts at drafts for relationship, sign-off, vendor outreach, regulator actions</td>
+<td><code>sessionend</code> Step 9 "Operator's Rebuttal" gate</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Reversibility</strong></td>
+<td>Every material change leaves a rollback path; supersede, never overwrite</td>
+<td><code>state/memory-corrections.log</code> before-after pairs</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Observability</strong></td>
+<td>Silent is a bug; subprocess &gt;15s requires heartbeat; auto-corrections log before applying</td>
+<td><code>master-brain/skills/council-mode/Scripts/heartbeat.py</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Least-Privilege</strong></td>
+<td>Every skill declares scope contract: read paths, write paths, MCP/tool surface, network egress, credentials</td>
+<td>Scope Contract block mandatory in <code>SKILL.md</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Reproducibility</strong></td>
+<td>Stage boundaries capture inputs + decision + trust-tag; render-target separation; multi-surface payloads enforce payload-first/render-second</td>
+<td><code>sessionstart</code> Stage 2.5 trust-tagging</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Self-Sufficiency</strong></td>
+<td>Cerebro never depends on a runtime it does not own; external tools are pattern donors, not load-bearing dependencies</td>
+<td>Constellation native runtime program</td>
+</tr>
+</tbody>
+</table>
+<p>Hermes's framing: <em>"These aren't culture — they're load-bearing architectural constraints. Most companies have culture documents. Cerebro has enforceable doctrine cross-walks."</em></p>
+<p>Codex's framing: <em>"Security is architectural, not an afterthought. Credentials, tools, routes, and origins are all policy surfaces."</em></p>
+<h3 id="the-four-doctrines">The Four Doctrines</h3>
+<p>Beyond the principles, four operating doctrines govern specific decision classes:</p>
+<ol>
+<li>
+<p><strong>Absorption-pattern doctrine</strong> — every external-tool intake follows five mandatory steps: origin gate → vendored reference clone → swarm-analyze extraction doc → cerebro-fit decision-doc-per-port-target → wiring with snapshot tag. <em>No more ad-hoc absorptions.</em> This doctrine was crystallized after nine absorptions in 72 hours threatened to overrun governance bandwidth.</p>
+</li>
+<li>
+<p><strong>Diagram-First Doctrine</strong> — multi-component architecture decisions ship with a visual. ASCII inline by default (zero cost, always works). Mermaid/HTML when relationships warrant. The diagram block lives directly under <code>## Why</code> in decision documents. <em>Closes the mental-model-vs-ground-truth drift class.</em></p>
+</li>
+<li>
+<p><strong>Origin Policy 3a/3b/3c</strong> — model weights are "American-owned, American-sold" (research geography allowed). Tools and MCPs are licensed-permissive with hot-path code review and pinned commits. License gate (3c) added 2026-05-18 after a tools-origin question forced explicit license classification.</p>
+</li>
+<li>
+<p><strong>Three-Surface Rule (SOP v1.3)</strong> — work routes to one of three surfaces: Claude Code (git, Ollama, Mac-FS-outside-workspace, credentials), Operator (relationships, sign-offs, hard strategic calls), or Cowork (in-workspace edits, drafts). Sub-surface annex names four executors under Claude Code: Native CC, Codex TUI/exec, Ruflo daemon, Hermes runtime.</p>
+</li>
+</ol>
+<h3 id="why-this-matters-externally">Why this matters externally</h3>
+<p>A regulator does not need to learn Cerebro to evaluate Cerebro. The doctrine is the audit. Open the principles table, open the ref-impl pointer, run the probe, verify the constraint. The system explains itself.</p>
+<p>Codex's evaluation: <em>"Decision docs, reversibility clauses, session rituals, handoffs, audits, diagrams, and explicit operating principles … the governance discipline is unusually mature for a solo project."</em></p>
+<p>This is the IP package. Everything else in this paper either depends on it or extends it.</p>
+<hr />
+<h2 id="5-reversibility-as-a-design-primitive">5. Reversibility as a Design Primitive</h2>
+<p>Of every architectural choice Cerebro has made, Reversibility (Principle #5) is the most defensible single claim.</p>
+<p>Hermes named it: <em>"Infrastructure time-travel as a design primitive … the single most mature aspect of the system."</em></p>
+<p>Codex named it: <em>"Reversibility is mature. Many changes include rollback paths before mutation."</em></p>
+<p>The principle is simple and load-bearing:</p>
+<blockquote>
+<p><strong>Every material change leaves a rollback path. State runs like a mirror: constant snapshot, always recoverable.</strong></p>
+</blockquote>
+<p>In practice, this means:</p>
+<ul>
+<li>
+<p><strong>Decision supersession, never deletion.</strong> When a 2026-04-21 decision relaxed an earlier 2026-04-17 model-policy lock, the old decision was not overwritten. It was marked superseded. The earlier doctrine is still readable. Reversibility means: the audit trail does not gaslight you about what was true on Tuesday.</p>
+</li>
+<li>
+<p><strong>Memory corrections log before mutation.</strong> When a memory claim is found drifted, the auto-correction logs the before-state to <code>state/memory-corrections.log</code> <em>before</em> writing the new state. Any correction is replayable. Any correction is reversible by reading the log entry and reverting.</p>
+</li>
+<li>
+<p><strong>Snapshot-tag-before-mutation.</strong> Destructive operations (vendor refresh, plugin uninstall, schema migration) tag a git ref <code>pre-&lt;operation&gt;-&lt;date&gt;</code> <em>before</em> the operation runs. Rollback recipe is one cherry-pick.</p>
+</li>
+<li>
+<p><strong>Blue/green for production swaps.</strong> Composer/inference substrate swaps go through dedicated swap scripts. Never live-swap. The previous configuration remains addressable.</p>
+</li>
+<li>
+<p><strong>Commented-out code, not deleted code.</strong> When the sessionstart <code>PRIORITY_READ</code> block was de-wired 2026-05-21, the block was commented out, not removed. The wiring is single-line reversible.</p>
+</li>
+<li>
+<p><strong><code>Brain/</code> capital-B retention.</strong> When the kebab-case rename happened, the legacy capital-B <code>Brain/</code> references were preserved as case-insensitive-filesystem artifacts and annotated. The rename is reversible at the case level. (This sounds trivial. It is not. It is the difference between "we renamed" and "we have audit-grade proof of the rename's reversibility.")</p>
+</li>
+</ul>
+<p>Why this is a defensible architectural claim:</p>
+<p>In safety-critical engineering (aerospace, medical devices, nuclear), the requirement is not <em>"don't make mistakes."</em> The requirement is <em>"every mistake must be recoverable to a known prior state."</em> Reversibility-as-design-primitive is the same posture, applied to a one-operator AI-native company. The architectural cost is real (every change carries a documentation overhead). The architectural payoff is also real: there is no irrecoverable state in the system.</p>
+<p>Codex's formulation, after observing this pattern across 296 decision docs and a <code>memory-corrections.log</code> spanning the full 45 days:</p>
+<blockquote>
+<p><em>"The best signal is not that every decision was right. It is that the system has visible supersession, correction, and rollback behavior. That is real engineering maturity."</em></p>
+</blockquote>
+<p>For GovCon and regulated-industry buyers, this is not a feature. It is a contractual posture. <em>"Show me your audit trail"</em> has a one-command answer.</p>
+<hr />
+<h2 class="page-break-before" id="6-the-memory-architecture">6. The Memory Architecture</h2>
+<p>Memory is where most agent systems collapse. A chat history is not memory. A vector store dump is not memory. A YAML rules file is not memory. Memory is <strong>identity + working set + semantic retrieval + audit trail + task state</strong>, and those should not all live in the same store.</p>
+<p>Cerebro's memory architecture evolved through observation, not initial design. The current shape:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Backing store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Identity</strong></td>
+<td>Always-loaded rules, preferences, guardrails</td>
+<td>File memory (<code>MEMORY.md</code> + per-entry <code>.md</code> files with frontmatter)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Reasoning</strong></td>
+<td>Associative human-readable thinking, knowledge vault</td>
+<td>Obsidian-LLM-wiki + <code>knowledge-vault/</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Warehouse</strong></td>
+<td>Semantic vector recall across full corpus</td>
+<td>Qdrant on hub (seven collections: decisions, sessions, skills, knowledge-vault, memory-stream, research, Telegram-stream)</td>
+</tr>
+</tbody>
+</table>
+<p>Additional stores serving distinct jobs:</p>
+<ul>
+<li><strong>Process memory</strong> — claude-flow / <code>.swarm/memory.db</code> for agent flows.</li>
+<li><strong>Audit memory</strong> — <code>decisions/</code> and <code>sessions/</code> (chronological + canonical).</li>
+<li><strong>Active work</strong> — kanban / Hermes board (mutable working set, distinct from frontmatter historical record).</li>
+<li><strong>Telegram stream</strong> — Qdrant collection capturing conversational history from the mobile operator surface.</li>
+</ul>
+<h3 id="the-architectural-pivot-why-fanout-read-is-correct">The architectural pivot — why "fanout-read" is correct</h3>
+<p>The first draft of the memory architecture (April 2026) proposed a unified <code>MemoryWriter</code> contract: a single write path, fanout to all backends. This was wrong. Implementation revealed that strong write fanout is brittle:</p>
+<ul>
+<li>Every writer would need to understand every backend.</li>
+<li>One backend failure could block unrelated writes.</li>
+<li>Silent partial writes were impossible to detect without a global write transaction.</li>
+</ul>
+<p>In May 2026, the unified-write contract was superseded. The new design: <strong>per-source writes plus unified fanout-read.</strong></p>
+<pre><code>  ┌──────────────────────┐         ┌──────────────────────┐
+  │ CC / Codex writes    │────────▶│ file memory          │
+  │ Hermes writes        │────────▶│ Qdrant stream        │
+  │ sessionend writes    │────────▶│ sessions + decisions │
+  │ curator writes       │────────▶│ Qdrant collections   │
+  └──────────────────────┘         └──────────┬───────────┘
+                                              │
+                                              ▼
+                                   ┌──────────────────────┐
+                                   │ unified read (recall)│◀── top-k context
+                                   │ memory-check tool    │   with provenance
+                                   └──────────────────────┘
+</code></pre>
+<p>Each writer writes to the store it knows. Retrieval is responsible for federation. Eventual consistency is accepted. The retrieval surface presents top-k context across all stores with provenance.</p>
+<p>Codex's evaluation: <em>"Per-source write plus unified fanout-read … that is the correct call. This memory architecture is one of the strongest parts of the system. It reflects lessons frontier labs also learn: memory is not one thing."</em></p>
+<h3 id="whats-solved-whats-queued-the-honest-split">What's solved, what's queued (the honest split)</h3>
+<p><strong>Solved on the primary write surface.</strong> The 11-key memory attribution contract — <code>source_surface</code>, <code>host</code>, <code>tool</code>, <code>session_id</code>, <code>written_at_utc</code>, <code>source_path</code>, <code>confidence</code>, <code>lifecycle</code>, and three audit fields — is <strong>live and enforced today</strong> on Claude Code Write/Edit via a PreToolUse hook, on every <code>sessionend</code> write, on every decision-doc commit, and on every <code>council-mode</code> invocation. Every memory file written from those surfaces in the last 30 days carries the full contract. Historic memories pre-dating the contract have a one-pass backfill script (<code>master-brain/skills/memory-attribution-lint/Scripts/backfill.py</code>) ready to run.</p>
+<p><strong>Queued for the secondary surfaces.</strong> Non-Claude-Code writers — the Hermes internal memory manager, the Pulsar harvester, and hub-side service writes — currently write to their own paths without the full 11-key contract. Their attribution coverage extends as the Hermes → Constellation Composer cutover lands (§14, 30-day milestone). This is a deliberate progressive-enforcement posture, not an oversight: the primary write surface (CC) is where 80%+ of memory mutations originate; closing the long tail follows the same blue/green cutover that closes the Constellation contradiction.</p>
+<p>This is the kind of gap a 45-day sprint produces honestly: the contract is right, the primary surface enforces it, the long tail is queued behind a named milestone.</p>
+<hr />
+<h2 id="7-the-multi-surface-routing-matrix">7. The Multi-Surface Routing Matrix</h2>
+<p>One operator. Five executors. Explicit routing.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Job</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code (Native, A)</strong></td>
+<td>Default executor. Git, file edits, Bash, MCP tools.</td>
+<td>All in-workspace work.</td>
+</tr>
+<tr>
+<td><strong>Codex CLI (B)</strong></td>
+<td>Surgical single-file edits with diff approval gates.</td>
+<td>Mechanical refactors, format-preserving tweaks.</td>
+</tr>
+<tr>
+<td><strong>Hermes (hub, D)</strong></td>
+<td>24/7 Telegram composer. Mobile dispatch. Receives operator messages, drafts responses, files kanban tickets.</td>
+<td>Operator working from phone; cross-device continuity.</td>
+</tr>
+<tr>
+<td><strong>Hermes (local, nexus)</strong></td>
+<td>Ad-hoc reasoning, curator dry-runs, skill tests. Same Anthropic substrate.</td>
+<td>When the workstation is the right surface but Hermes idioms beat raw CC.</td>
+</tr>
+<tr>
+<td><strong>Operator (relationship layer)</strong></td>
+<td>Vendor calls, customer pitches, bid submissions, hard strategic calls, regulator interactions.</td>
+<td>Anything that touches a relationship. Automation halts at drafts.</td>
+</tr>
+</tbody>
+</table>
+<p>The routing matrix is not optional. It is policy, encoded in <code>CLAUDE_CODE_SOP.md</code> v1.3 and the dept CLAUDE.md non-negotiables. Mis-routing carries a real cost: a vendor email drafted by an automation surface and sent without operator review is a Human-in-the-Mix (#4) violation. The doctrine names the violation class so it is visible when it almost happens.</p>
+<p>Hermes is the most interesting surface from an external perspective. A 24/7 Telegram composer running on a 16GB services node node means the operator can dispatch work from a phone in a parking lot. <em>"Phone → Telegram → Hermes hub → Claude Code subprocess → git branch → PR → operator reviews."</em> That workflow has been proven end-to-end. It is what makes a one-operator company physically possible.</p>
+<h3 id="71-parallel-execution-patterns-five-receipts">7.1 Parallel-execution patterns — five receipts</h3>
+<p>Routing the right surface is one decision; firing surfaces <em>in parallel</em> against the right work shape is the second decision. The matrix above describes where each surface lives. The five patterns below describe how they compose. Each is a worked receipt from actual operating history, not a hypothetical. Patterns A, B, D, E are positive receipts (composition shapes the system uses today); Pattern C is the negative receipt (the composition shape the system demoted by doctrine).</p>
+<p><strong>Pattern A — Read-while-write (Claude Code + Hermes local).</strong> Claude Code executes a multi-step plan that mutates the workspace; in a parallel terminal, Hermes local fires read-only probes (status checks, doctor runs, kanban queries, curator dry-runs). Both surfaces share the workspace filesystem; CC writes, Hermes observes. Receipt: sessionend execution where CC commits five files and writes the brief while Hermes local/hub-kanban probes validated the kanban state in parallel to confirm the harvester emitted what the brief promised. The two surfaces converge on the same ground truth without stepping on each other because Hermes reads the artifacts CC just wrote.</p>
+<p><strong>Pattern B — Surgical split (Claude Code + Codex).</strong> Claude Code plans the change, identifies the file, and reviews the diff; Codex executes the single-file surgical edit with brave-mode + diff-approval gate; Claude Code verifies and commits. Roughly 3–5× faster than CC-alone on bounded mechanical edits because Codex's specialization sits on top of CC's planning context rather than competing with it. Receipt: the 2026-05-20 hermes-auth diagram patch — CC located the drift in the hermes-auth diagram trail, Codex applied the literal string swap with diff approval, CC reviewed the diff in a single commit. CC kept the audit-trail seat; Codex kept the editor seat. Same workspace, two specialists.</p>
+<p><strong>Pattern C — IDE-side editing (Claude Code in VSCode), contextual only.</strong> CC running inside the VSCode editor for inline edits where the file tree + visual diff add value. <strong>Demoted 2026-05-20</strong> from a default pattern to a contextual one. The reason is operational: VSCode-embedded CC sessions cannot survive a terminal disconnect, cannot be backgrounded under <code>tmux</code>, and lose state if the editor crashes. Any work that runs over five minutes of wall clock, any task that needs scrollback resilience, any session the operator might step away from — all of it routes to the CLI surface. Pattern C is now reserved for short, bounded tasks where the visual file tree is genuinely the right affordance (e.g., browsing an unfamiliar repo for the first time). The doctrine names the demotion explicitly so the choice between CLI and IDE stays conscious, not habitual.</p>
+<p><strong>Pattern D — Local-first / hub-mirror (Hermes local → hub).</strong> Develop and test Hermes skills locally on nexus; a sync step promotes validated state to the hub; the hub is canonical production, nexus is staging. Blue/green discipline preserved: production composer is never live-swapped, the green side is always ready before promote. Receipt: the Telegram-seam outbound feature (2026-05-22, five-phase evolution) was built and verified on nexus across all five phases (standalone CLI smoke → composer wiring → text-auto-route → chunked-inline → PDF render). The hub path was smoke-tested through the actual Telegram receipt before writeback. Hub never saw an unvetted code path.</p>
+<p><strong>Pattern E — Mobile-dispatch (Phone → Telegram → Hermes hub → Claude Code subprocess).</strong> From phone in transit, the operator dispatches a file or instruction to the hub's 24/7 Hermes Telegram composer; Hermes routes the work via subprocess to Claude Code on the nexus workstation; CC executes, commits, and returns a PDF receipt back through Telegram. Receipt: the 2026-05-22 Telegram seam outbound feature landed end-to-end — phone → hub services node → nexus workstation in one operating turn, with PDF auto-render closing the mobile mojibake gap. Pattern E is the only pattern that exercises the full multi-node fleet and the only one that survives "operator not at the workstation." It is the load-bearing pattern for solo-operator viability — and the receipt for the §7 prose claim immediately above. Honest cross-reference: Pattern E currently runs on the vendored Hermes runtime that §8 names as the load-bearing Constellation contradiction; the Hermes → Constellation Composer cutover (§14, 30-day milestone) preserves Pattern E by design under blue/green discipline.</p>
+<p><strong>Why five patterns instead of one routing rule.</strong> Routing is a matrix; the matrix's expressiveness only materializes when patterns compose. Pattern A buys observability for free during long writes. Pattern B trades a small coordination cost for a large editor-specialization gain. Pattern D is how Cerebro keeps production safe under blue/green even when "production" is a 16GB box on the same Tailscale net as the workstation. Pattern E is how a one-operator company stays operational when the operator is not at the workstation. Pattern C is the explicit negative receipt — a pattern that <em>was</em> default and is no longer, because the team learned what fails when long-running work meets an IDE; mapping C to the disconnect-survival audit question is not affirming the pattern but naming the failure mode the demotion teaches. Five patterns, five audit questions: <em>Did you observe (A)? Did you specialize (B)? Did you stage before production (D)? Did you survive being away from the workstation (E)? What fails the disconnect-survival question (C — the demotion is the doctrinal answer)?</em> The patterns are not parallel-positive; Pattern C carries the failure-receipt weight, matching the negative-case framing §17 uses to make gap-naming a load-bearing posture rather than a defensive one.</p>
+<h3 id="72-surface-isolation-posture">7.2 Surface Isolation Posture</h3>
+<p>Routing names <em>where</em> work happens; isolation posture names <em>how</em> a surface is fenced from the rest of the system when it acts. Each surface in the matrix carries an isolation primitive — different shape, different cost, different gap.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Isolation primitive</th>
+<th>What it fences</th>
+<th>Honest gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code (Native, A)</strong></td>
+<td>Git worktrees + scope contract (<code>SKILL.md</code> declared read/write paths) + PreToolUse credential-exposure-guard hook</td>
+<td>File-system writes scoped to declared paths; credential files filename-blocked; isolated experimental branches via <code>worktree</code> mode</td>
+<td>Bash surface is broad by design (executor needs OS access). Mitigation: workspace-relative paths + dirty-tree review at every sessionend.</td>
+</tr>
+<tr>
+<td><strong>Codex CLI (B)</strong></td>
+<td>Diff-approval gate per file edit</td>
+<td>No edit lands without operator review; mechanical refactor scope is bounded per invocation</td>
+<td>No filesystem fence beyond the diff gate — Codex sees the whole repo.</td>
+</tr>
+<tr>
+<td><strong>Hermes (hub, D)</strong></td>
+<td>Subprocess fence for Claude Code dispatch; Tailscale-only ingress for Telegram routing</td>
+<td>Hermes routes work to CC as a subprocess, not in-process — composer crash cannot corrupt CC state. No public-internet ingress; Telegram requests cross the Tailscale mesh only.</td>
+<td>Composer itself is a host process (not containerized) for <code>~/.hermes/</code> filesystem access. Container fence is a queued maturation.</td>
+</tr>
+<tr>
+<td><strong>Hermes (local, nexus)</strong></td>
+<td>Same as hub</td>
+<td>Same as hub</td>
+<td>Same as hub.</td>
+</tr>
+<tr>
+<td><strong>Substrate (Layer 4)</strong></td>
+<td>Docker bridge network (<code>cerebro-net</code>) for LiteLLM / Postgres / Qdrant; image pinning per ADR-003</td>
+<td>Service containers cannot reach the public internet; upgrades are blue/green-swappable with snapshot rollback</td>
+<td>Ollama runs as a host service on each GPU node — outside the container fence by design (model file access).</td>
+</tr>
+<tr>
+<td><strong>Operator (relationship layer)</strong></td>
+<td>Human-in-the-Mix #4 (draft, then review)</td>
+<td>Every relationship action passes through human review before send</td>
+<td>Discipline-enforced, not mechanically enforced. The doctrine names the seam; the human honors it.</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern: substrate services with stable boundaries get container isolation; orchestrators and composers that need broad host access stay as host processes with declared scope contracts; the operator is the final fence on anything that touches a relationship. Sandbox-by-default is not the posture — <em>declared-scope-with-named-gaps</em> is. The gaps are visible, which is the load-bearing property.</p>
+<p>This matters externally because the next maturation step is well-defined: extend container isolation to the Hermes composer once the Constellation Composer cutover lands (§14, 30-day milestone). The same blue/green discipline that swaps the composer runtime also lets the composer move from host process to containerized service without breaking Pattern E mobile dispatch.</p>
+<hr />
+<p><strong>A note on swarm orchestration — pattern donor, not primary executor.</strong> Cerebro absorbed the 60+ agent catalog of the <code>.claude-flow</code> / Ruflo V3 swarm-orchestration framework — hive-mind topology, collective-intelligence primitives, mesh-peer coordination, hierarchical-queen-led delegation — and runs the daemon today as a load-bearing memory ingest substrate on every Claude Code turn. What Cerebro does <em>not</em> do is deploy swarm topology as the primary executor pattern. The 60+ agents are available as roles; they are not running as 60 concurrent autonomous executors. When this paper refers to fan-out, it means parent-child subagent dispatch under one orchestrator (Claude Code spawning Explore / Plan / specialized subagents), not topology-swarm. Reason for the demotion: a one-operator company does not have the governance bandwidth to audit 60 concurrent agents acting autonomously. The five-surface routing matrix above is the deliberate alternative — fewer surfaces, each one explicitly auditable, no implicit multi-agent consensus. Swarm vocabulary and the daemon stay in the pattern library; swarm runtime as a primary executor topology is queued behind Constellation completion and Sergeant L4 / L5 demand signal.</p>
+<hr />
+<h2 id="8-constellation-runtime-sovereignty-as-a-discipline">8. Constellation — Runtime Sovereignty as a Discipline</h2>
+<p>Self-Sufficiency Principle #9: <strong>Cerebro never depends on a runtime it does not own.</strong></p>
+<p>Constellation is the program that implements this principle. Seven Cerebro-native modules, each replacing a vendored pattern donor:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Job</th>
+<th>Pattern donor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cerebro</strong></td>
+<td>Memory, RAG, entity graph</td>
+<td>gbrain</td>
+</tr>
+<tr>
+<td><strong>Composer</strong></td>
+<td>Orchestration, seams</td>
+<td>Hermes</td>
+</tr>
+<tr>
+<td><strong>Forge</strong></td>
+<td>Tool execution, task lifecycle</td>
+<td>OpenClaw</td>
+</tr>
+<tr>
+<td><strong>Distiller</strong></td>
+<td>Compression</td>
+<td>caveman</td>
+</tr>
+<tr>
+<td><strong>Refiner</strong></td>
+<td>Output polish, code lint</td>
+<td>codeburn</td>
+</tr>
+<tr>
+<td><strong>Sentinel</strong></td>
+<td>Monitoring, probes</td>
+<td>watch / browser-harness</td>
+</tr>
+<tr>
+<td><strong>Probe</strong></td>
+<td>Web, dashboard, outbound</td>
+<td>browser-harness</td>
+</tr>
+</tbody>
+</table>
+<p>The donor model matters. Cerebro does not depend on Hermes. Cerebro studies Hermes, extracts the patterns that work, ports them as Cerebro-native code under Cerebro names, runs them on the Cerebro fleet, governs them with the Cerebro framework. <em>Pattern completion, not pattern copying</em> (Hermes's framing, §III.3 of its analysis). The vendored Hermes folder remains on disk as a reference, not as a load-bearing dependency.</p>
+<h3 id="honest-production-status-the-load-bearing-contradiction">Honest production status — the load-bearing contradiction</h3>
+<p>Constellation has substantial native code. The modules exist. Smoke tests pass. The architecture is correct.</p>
+<p><strong>Hermes still runs production.</strong> The hub's 24/7 Telegram composer is the vendored Hermes runtime, not Constellation Composer. Codex named this as <em>"the biggest architectural contradiction relative to Self-Sufficiency #9."</em> CC named it as the next ship milestone. Hermes-on-hub itself, when commissioned to write the third-party-style analysis, <em>did not surface this contradiction</em> — its analysis was silent on the cutover gap. That silence is itself evidence: single-vantage architecture review misses load-bearing contradictions. <em>Triangulation produces honesty that introspection cannot.</em></p>
+<p>The cutover is a 6–8 week production migration. Not a heroic one-session swap. Codex was explicit: <em>"If cutover requires 6-8 weeks, that is not failure; that is an appropriate migration estimate. Do not compress it into a heroic one-session migration."</em></p>
+<p>This paper does not claim Constellation as production-complete. It claims it as the <em>correct strategic direction</em> with <em>the cutover audit queued as the next milestone</em>. Reversibility #5 governs the cutover the same way it governs everything else: documented fallback path; blue/green substrate swap; rollback recipe before the first byte is migrated.</p>
+<hr />
+<h2 id="9-cost-aware-dispatch-budgets-as-routing-primitives">9. Cost-Aware Dispatch — Budgets as Routing Primitives</h2>
+<p>Conventional wisdom: cloud AI is expensive, local AI is cheap, pick one and stick with it.</p>
+<p>Cerebro treats cost as a routing signal, not a constraint.</p>
+<p>LiteLLM (the gateway on hub) carries budget caps and US-only allowlist enforcement. Every model route declares: primary model, provider path, auth source, fallback route, max cost, allowed surfaces, verification command, last-verified timestamp.</p>
+<p>When cloud cost spikes (rate-limit pressure, end-of-month budget pressure, latency spike), the dispatch shifts toward local Ollama inference on prime-alpha (RTX 4090, 64GB). When local cannot serve the task class (frontier reasoning, long-context document synthesis), dispatch shifts to Anthropic. When neither can serve the job at the budget, the operator is asked.</p>
+<p>Hermes's framing: <em>"When cloud costs spike, the system automatically shifts workload to local models. Frame this as a feature, not a constraint."</em></p>
+<p>Seven concrete use cases keep local inference load-bearing even with cloud quotas relaxed:</p>
+<ol>
+<li><strong>IL5 / disconnected</strong> — air-gap demos cannot call out to a cloud endpoint.</li>
+<li><strong>Latency-bound feedback loops</strong> — code lint, sessionend writeback, kanban updates. Local round-trip beats cloud cold-start.</li>
+<li><strong>PII-bound work</strong> — credential audits, customer-document drafting. The data does not leave the operator's hardware.</li>
+<li><strong>Rate-limit buffer</strong> — when the cloud quota is throttling, the work continues locally instead of stalling.</li>
+<li><strong>Task specialization</strong> — different model roles (autoresearch, summarization, code review) prefer different substrates.</li>
+<li><strong>Eval diversity</strong> — head-to-head comparison across local + cloud catches single-substrate biases.</li>
+<li><strong>Failover</strong> — when the cloud is down for a billing-state reason, work continues.</li>
+</ol>
+<p>Even with unlimited Anthropic quota, local stays critical. <em>Complementary</em>, not redundant.</p>
+<hr />
+<h2 id="10-the-tier-metaphor-human-org-design-applied-to-inference-routing">10. The Tier Metaphor — Human Org Design Applied to Inference Routing</h2>
+<p>Hermes contributed the framing that most reviewers found marketable: <strong>the model routing matrix maps to a human organizational chart.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model Tier</th>
+<th>Org Equivalent</th>
+<th>Cerebro Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontier (Claude Opus, GPT-5)</td>
+<td>CEO</td>
+<td>Hard strategic calls, novel architecture, IP-grade reasoning</td>
+</tr>
+<tr>
+<td>Senior Advisor (Claude Sonnet, GPT-4-class)</td>
+<td>SVP</td>
+<td>Multi-step planning, code review, principled refactor</td>
+</tr>
+<tr>
+<td>Team Lead (Gemma 4 31B, Nemotron 70B local)</td>
+<td>Director</td>
+<td>Workflow orchestration, summarization, intra-system dispatch</td>
+</tr>
+<tr>
+<td>Operator (Nemotron 3 Nano, small specialists)</td>
+<td>Individual Contributor</td>
+<td>High-throughput per-step execution, lint, format, ingest</td>
+</tr>
+</tbody>
+</table>
+<p>The metaphor is not aesthetic. It is a routing primitive. <em>"Don't ask the CEO to format a CSV"</em> maps directly to <em>"don't call Opus for a hundred-line sed substitution."</em> The cost differential is the same shape: frontier-model token cost has the same per-output multiplier as a senior person's hourly cost relative to a junior person's.</p>
+<p>Decision: on 2026-05-18, the 9-role specialist roster (composer, reasoner, tool-caller, structurer, autoresearch, code-reviewer, summarizer, search-replace, lint) replaced the one-size-fits-all framing. Each role has a benched substrate. Each substrate has a route. Each route has a Route Contract.</p>
+<p>The metaphor scales externally too. When Cerebro talks to a regulated-industry buyer, <em>"frontier-CEO / senior-SVP / team-lead-director / operator-IC"</em> is a vocabulary the buyer's CIO already speaks. The architecture explains itself without requiring AI-infrastructure literacy.</p>
+<h3 id="101-specialist-bench-v3-final-may-18-17-candidates-9-roles">10.1 — Specialist Bench (v3-final, May 18, 17 candidates → 9 roles)</h3>
+<p>The 9-role roster did not emerge from analysis; it emerged from benching. The Championship Bench v3-final on 2026-05-18 ran 17 candidate models on prime-alpha (RTX 4090), three bench runs per probe, against a 2500-character composer prompt with text-mode emit parsing. Scoring: tool_obedience (max 50) + coverage (max 30) + honesty_bonus (max 20) − latency_penalty − hallucination_penalty.</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Model</th>
+<th>Score</th>
+<th>Origin</th>
+<th>Role assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>llama3.1:8b-instruct-q8_0</td>
+<td>90</td>
+<td>US (Meta)</td>
+<td>Composer-slot WINNER (tool 50 + coverage 20 + honesty 20)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>nemotron-nano-8b</td>
+<td>90</td>
+<td>US (NVIDIA)</td>
+<td>Composer-slot alternate</td>
+</tr>
+<tr>
+<td>3</td>
+<td>nemotron-30b-a3b</td>
+<td>80</td>
+<td>US (NVIDIA)</td>
+<td>Autoresearch substrate (LIVE)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>llama3.1:8b-instruct-q6_K</td>
+<td>70</td>
+<td>US (Meta)</td>
+<td>Same model, lower quant — honesty 0 vs q8 +20</td>
+</tr>
+<tr>
+<td>5</td>
+<td>mistral-nemo:12b-instruct-2407-q6_K</td>
+<td>70</td>
+<td>FR (Mistral, allied-nation exception)</td>
+<td>Reserve</td>
+</tr>
+<tr>
+<td>6</td>
+<td>llama3.3:70b-instruct-q4_K_M</td>
+<td>70</td>
+<td>US (Meta)</td>
+<td>Latency-penalty −20 — long-context role candidate</td>
+</tr>
+<tr>
+<td>7</td>
+<td>gemma4:26b-a4b-it-q4_K_M</td>
+<td>70</td>
+<td>US (Google)</td>
+<td>Coverage 0 — no Composer fit</td>
+</tr>
+<tr>
+<td>8</td>
+<td>spooknik/hermes-2-pro-mistral-7b</td>
+<td>65</td>
+<td>FR (Mistral)</td>
+<td>Text-mode tool 35 only</td>
+</tr>
+<tr>
+<td>9</td>
+<td>interstellarninja/hermes-2-pro-llama-3-8b</td>
+<td>65</td>
+<td>US (Meta)</td>
+<td>Text-mode parse-out</td>
+</tr>
+<tr>
+<td>10</td>
+<td>phi4:14b</td>
+<td>65</td>
+<td>US (Microsoft)</td>
+<td>Mid-pack</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gemma3:27b-it-q4_K_M</td>
+<td>65</td>
+<td>US (Google)</td>
+<td>Older Gemma generation</td>
+</tr>
+<tr>
+<td>12</td>
+<td>gemma4:31b-it-q4_K_M</td>
+<td>55</td>
+<td>US (Google)</td>
+<td>Senior Advisor tier (separate role — Composer no-fit)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>gemma4:e4b</td>
+<td>40</td>
+<td>US (Google)</td>
+<td>Multimodal role primary (separate role)</td>
+</tr>
+<tr>
+<td>14</td>
+<td>llama-3.1-nemotron-70b</td>
+<td>40</td>
+<td>US (NVIDIA)</td>
+<td>Latency + coverage issues</td>
+</tr>
+<tr>
+<td>15</td>
+<td>granite3.3:8b</td>
+<td>30</td>
+<td>US (IBM)</td>
+<td>Repurposed as Safety/refusal role</td>
+</tr>
+<tr>
+<td>16</td>
+<td>nemotron-nano-9b-v2</td>
+<td>30</td>
+<td>US (NVIDIA)</td>
+<td>Hallucination_penalty −30 — repurposed as Council adversary</td>
+</tr>
+<tr>
+<td>17</td>
+<td>nemotron-nano-12b-v2</td>
+<td>30</td>
+<td>US (NVIDIA)</td>
+<td>Hallucination_penalty −30 — same role</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Origin policy 3a compliance:</strong> 100% (US-owned + two allied-nation FR exceptions cleared via decision doc + feedback memory). Chinese providers excluded (Moonshot · DeepSeek · Qwen · GLM · MiniMax · Xiaomi-MiMo · Zhipu — seven providers documented in <code>state/fleet-dispatch.json</code>).</p>
+<p><strong>Key reframe for the bench narrative:</strong> the bench did not pick "the winner." It produced a <strong>9-role specialist roster</strong>. Reasoning-class fabricators (#16-17 nemotron-nano-v2 family) were repurposed as council adversaries, NOT discarded. Different roles, different selection criteria. Composer-slot itself is parked behind the build-freeze; re-bench post-release per <code>decisions/2026-05-21-build-freeze-and-fix-head-to-toe-doctrine.md</code>. Full role-to-model mapping in <code>decisions/2026-05-18-specialist-roster-by-role.md</code>.</p>
+<p>The pattern lesson: benching is a substrate-discovery instrument, not an elimination tournament. The published roster, the suppression record, and the supersession path for re-bench are all preserved in the decision log.</p>
+<hr />
+<h2 id="11-the-audit-ready-commercial-story">11. The Audit-Ready Commercial Story</h2>
+<p>Cerebro Cyber Solutions is an SDVOSB. The commercial wedge is GovCon — specifically, regulated environments where the buyer cannot ship workloads to consumer-cloud AI. CMMC Level 2, FedRAMP Moderate, IL5, and SDVOSB set-aside contracts.</p>
+<p>In these environments, three constraints dominate:</p>
+<ol>
+<li><strong>Operator-owned memory</strong> — the customer's data cannot live in a third-party SaaS database.</li>
+<li><strong>Local or sovereign-cloud inference</strong> — model calls must be auditable, and in some cases (IL5) cannot reach the open internet.</li>
+<li><strong>Documented governance</strong> — the auditor wants to see policy enforcement at the architecture layer, not the configuration layer.</li>
+</ol>
+<p>Cerebro's architecture maps to these constraints without retrofitting:</p>
+<ul>
+<li><strong>Operator-owned memory:</strong> Qdrant on hub. File memory on workstation. No third-party SaaS in the memory path.</li>
+<li><strong>Local inference:</strong> prime-alpha (RTX 4090, 64GB) serves the local-routable workload. Cloud fallback is policy-gated and origin-checked.</li>
+<li><strong>Documented governance:</strong> the 9-principle framework + 4 doctrines + 296 decision docs + supersession chain is the audit trail. The auditor reads decision documents, not source code, to understand how the system arrived at its current state.</li>
+</ul>
+<p>The commercial framing — <em>"Audit-ready by construction. Operator-owned. Reversible. Compliant by design, not by retrofit."</em> — is the wedge. SDVOSB is the legal vehicle. GovCon is the buyer.</p>
+<p>Codex's evaluation: <em>"Operator-owned memory, local infrastructure, and auditability fit regulated/customer-owned environments."</em></p>
+<p>Hermes's evaluation: <em>"Designing for compliance from day one … that's foresight."</em></p>
+<hr />
+<h2 id="115-sergeant-vision-audit-first-service-tiering-and-the-regulation-ahead-posture">11.5 Sergeant Vision — Audit-First Service Tiering and the Regulation-Ahead Posture</h2>
+<p>The audit-ready posture in §11 is not just commercial framing. It is the architectural premise that makes the Sergeant doctrine (L0–L5 service tiers, fully expanded in §14 Post-V1) a deliverable rather than a marketing line. Three claims belong here, ahead of the timeline, because they explain why the build sequence chose audit-first over scale-first.</p>
+<p><strong>Claim 1: Audit-first, not scale-first — the architecture maps to military regulation primitives.</strong></p>
+<p>The doctrines that govern Department of Defense operations — chain of command, chain of custody, after-action review, lockstep coordination across units, supersession of orders without erasure of the prior order, mandatory documentation of every state-change — are not opposed to the Cerebro principle framework. They are the same primitives, applied to a different domain. The 9-principle framework cross-walks one-to-one with the operational doctrine that DoD, the Uniform Code of Military Justice, and the broader regulated-industry compliance corpus (CMMC, FedRAMP, NIST 800-53, IL5) all derive from:</p>
+<table>
+<thead>
+<tr>
+<th>Cerebro Principle</th>
+<th>Military / DoD Analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Governance #1</strong> — data lives where it is owned</td>
+<td>Chain of command — orders flow through declared hierarchy</td>
+</tr>
+<tr>
+<td><strong>Parity #2</strong> — skills track architecture in-session</td>
+<td>Doctrine update — TTPs revise when conditions change, in the same operational window</td>
+</tr>
+<tr>
+<td><strong>Lockstep #3</strong> — rollups update with source-of-truth</td>
+<td>Coordinated movement — no unit advances without flank confirmation</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-Mix #4</strong> — automation halts at relationship/sign-off</td>
+<td>Command authority — autonomous systems do not execute lethal or strategic actions without human approval</td>
+</tr>
+<tr>
+<td><strong>Reversibility #5</strong> — every change leaves a rollback path</td>
+<td>After-action review + corrective-action recovery — every operation must be analyzable and recoverable</td>
+</tr>
+<tr>
+<td><strong>Observability #6</strong> — silent is a bug</td>
+<td>Situation reporting — silent watches are reported failures, not normal</td>
+</tr>
+<tr>
+<td><strong>Least-Privilege #7</strong> — declared scope, no silent escalation</td>
+<td>Need-to-know — every clearance carries an explicit scope; mission creep is a violation</td>
+</tr>
+<tr>
+<td><strong>Reproducibility #8</strong> — replayable from inputs + trust-tags</td>
+<td>Operations order template — every order specifies inputs, decision authority, and verifiable outcome</td>
+</tr>
+<tr>
+<td><strong>Self-Sufficiency #9</strong> — Cerebro never depends on a runtime it does not own</td>
+<td>Sovereign capability — strategic operations cannot depend on foreign-controlled infrastructure</td>
+</tr>
+</tbody>
+</table>
+<p>This is not a metaphor. It is a structural correspondence. An AI infrastructure stack designed for a regulated-defense buyer should be built on the same primitives that buyer's own operational doctrine already encodes. Cerebro arrived at these principles through solo-operator constraint, not deliberate DoD-mapping — which is exactly what makes them defensible. The mapping is convergent evidence that the principles are load-bearing, not stylistic.</p>
+<p>The audit-first posture means: every claim in this paper, every decision in <code>master-brain/decisions/</code>, every supersession in the chain, and every memory mutation in <code>state/memory-corrections.log</code> is the same evidence an after-action review would consume. The architecture is built to be inspected. Sergeant L4 and L5 (Enterprise / Defense regulated-industry tiers) are the service productization of that posture.</p>
+<p><strong>Claim 2: Origin Policy 3a is regulation-ahead positioning, not preference.</strong></p>
+<p>Origin Policy 3a — <em>"American-owned, American-sold; us-owned-foreign-research-allowed (Google / Gemma exception); allied-nation exceptions (France / Mistral) cleared via decision doc"</em> — is not a stylistic choice. It is the architectural answer to a regulatory trajectory that is visible but not yet codified:</p>
+<ul>
+<li>The federal <strong>AI Diffusion Rule</strong> (2025) imposed compute-export licensing tiers and explicit country-of-origin restrictions on frontier-model deployment in regulated contexts.</li>
+<li>The <strong>Bureau of Industry and Security (BIS)</strong> has expanded entity-list coverage for Chinese AI providers across 2024–2026, with model-weight and API-access restrictions following the same trajectory as semiconductor export controls.</li>
+<li>State-level legislation in <strong>Oklahoma, Texas, New York, and several others</strong> has proposed or enacted Chinese-AI bans for state-government workloads.</li>
+<li><strong>CMMC Level 2</strong> and <strong>FedRAMP Moderate / High</strong> procurement language has begun specifying provenance requirements for AI components in regulated workloads, mirroring the supply-chain provenance requirements that already apply to software-bill-of-materials.</li>
+</ul>
+<p>A Cerebro-installed Libro PL1 stack today, by virtue of Origin Policy 3a, already complies with where this regulation trajectory is going. An operator who deploys Cerebro is not betting on regulatory direction; they are buying a stack that is already on the compliant side of every visible vector. <em>Audit-first, not scale-first</em> means: the architectural cost of provenance discipline was paid up front, so the customer does not pay it later under regulatory deadline pressure.</p>
+<p><strong>Claim 3: Chinese models were excluded by doctrine, ahead of performance evaluation.</strong></p>
+<p>Cerebro's championship bench (§10.1) ran 17 candidates and produced a 9-role specialist roster, 100% US-owned with two allied-nation Mistral exceptions. Notably absent: Qwen, DeepSeek, GLM, Moonshot, MiniMax, Xiaomi-MiMo, Zhipu — seven Chinese providers documented as excluded in <code>state/fleet-dispatch.json</code>.</p>
+<p>The exclusion was not performance-driven. It was governance-driven. The honest framing — necessary because public benchmarks tell a different story:</p>
+<ul>
+<li>On widely cited public reasoning benchmarks (MMLU, GSM8K, HumanEval-Mul), several Chinese-origin models — Qwen 2.5 family, DeepSeek-R1, GLM-4 — perform competitively with US-origin frontier models, often at substantially lower cost-per-token.</li>
+<li>Performance, in isolation, would have argued for including them in the candidate set.</li>
+<li>They were excluded <em>before</em> the bench ran — at the origin-gate of Absorption-Pattern Doctrine Step 1 (origin gate 3a). Performance was never measured because governance precedes performance in the Cerebro decision graph.</li>
+</ul>
+<p>This sequencing — governance gate first, performance evaluation second — is the load-bearing point. A buyer who deploys a Chinese-origin model into a regulated workload today is betting against the regulatory trajectory described in Claim 2. The architectural answer Cerebro chose was: do not place that bet on behalf of the operator. The Origin Policy 3a gate at the absorption step means the regulatory exposure was closed before it had a chance to open. The customer inherits the closed gate; they do not have to operate it.</p>
+<p>A second, equally important framing: Cerebro is not claiming Chinese models are technically inferior. The claim is narrower and more defensible — <em>Cerebro will not deploy them into operator workloads under current and visible-future US regulatory posture</em>. The asymmetry is intentional. Performance can be re-benchmarked when regulation clarifies; governance posture, once set, becomes the operator's audit-defense story. The doctrine optimizes for the latter.</p>
+<p><strong>Taken together:</strong> the Sergeant doctrine in §14 Post-V1 is built on three architectural premises set today — audit-first construction (Claim 1), regulation-ahead origin policy (Claim 2), and governance-gated model selection (Claim 3). These are not future commitments. They are the current architecture. The service-tier productization (L0 self-serve through L5 defense / on-prem) is the commercial expression of that architecture; the architecture itself is shipped, in the principle framework and the decision log, today.</p>
+<hr />
+<h2 id="12-the-45-day-timeline-six-weeks">12. The 45-Day Timeline (Six Weeks)</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Dates</th>
+<th>Theme</th>
+<th>Key milestones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Apr 13–19</td>
+<td>Foundation + Principles</td>
+<td>Brain folder scaffold; founding doctrine; principles #4–8 adopted (Human-in-the-Mix, Reversibility, Observability, Least-Privilege, Reproducibility); three-surface rule; persona layer; naming migration (kebab-case lock); first dept CLAUDE.md files</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Apr 20–26</td>
+<td>Origin policy + audit infrastructure</td>
+<td>Two-tier model policy lock then relaxation (American-owned American-sold); Cowork Projects rebuild; Anthropic API rotation; absorption-pattern doctrine (5 steps for every external-tool intake); first nine absorptions surveyed</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Apr 27–May 3</td>
+<td>Multi-tool pattern absorption + agent-runtime layer</td>
+<td>Codex absorption (Apr 29 decision doc) + Hermes audit (May 2); Karpathy / OpenCode / Open-design / Paperclip / Whisper extraction analyses; <strong>agent-runtime layer recognized as Layer 3</strong> (separate from skills); absorption-pattern doctrine ratified after nine absorptions in 72 hours; Ops V1 formal close (May 1); LiteLLM gateway hardening; first wave of Origin Policy 3b applications</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>May 4–10</td>
+<td>Self-Sufficiency #9 + Constellation thesis + RTX 4090 build-out</td>
+<td>Self-Sufficiency Principle adopted (May 4); native-runtime build roadmap; floor-runtime promotions superseded; Constellation modules planned (Cerebro / Composer / Forge / Distiller / Refiner / Sentinel / Probe); fleet roster v11 lock (May 10); <strong>prime-alpha RTX 4090 build-out</strong> (64GB DDR5; ~14× latency improvement over prior dormant-backup RTX 3080 — 1.75 → 25.38 tok/sec on Gemma 4 31B); <strong>Tailscale private mesh setup</strong>; LiteLLM Phase 1.4 hub standup; <strong>Codex full integration (May 9; Codex P3 hook runtime contract)</strong></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>May 11–17</td>
+<td>Memory architecture + command center + 20+ model benchmarks</td>
+<td>Memory architecture unification (per-source write + fanout-read); Command Center cc-1.2.0 LIVE; fleet probe wired into sessionstart; <strong>20-30 model benchmarks across reasoning + composer + autoresearch substrates</strong> (Nemotron family / Hermes-3 / Phi4 / Gemma / Llama derivatives); composer substrate selection (nemotron-nano-8b LIVE May 16 after 50-prompt benchmark); <strong>Hermes masterclass absorption (HM01-HM06; May 17)</strong>; Diagram-First Doctrine adopted (May 15); Specialist roster by role (9 roles)</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>May 18–21</td>
+<td>Honest contradiction-naming + white paper + championship bench</td>
+<td><strong>Championship Bench v3-final (May 18) — 17 candidates on prime-alpha, repurposes reasoning-class fabricators as council adversaries; specialist-by-role doctrine locked</strong> (see §10.1); composer wrapper no-fabrication gate; executive commandments; HCA01 cutover-fallback-wire decision; brief-loader cost reduction (309KB → 62.5KB, 80% reduction); three-vantage white paper synthesis (Codex + CC + Hermes blind drafts → reconciled synthesis → this paper); build-freeze + fix-head-to-toe doctrine adopted (May 21)</td>
+</tr>
+</tbody>
+</table>
+<p>That is 45 days, end to end. 296 decision documents. ~80 sessions. Single operator. No team.</p>
+<p>The visible hardships in the timeline are not failures. They are research findings. Codex's framing: <em>"The visible hardships are part of the accomplishment. They show the system was not a static plan copied from a reference architecture; it was discovered through contact with real operational constraints."</em></p>
+<p>The fact that origin policy was locked then relaxed → naming convention was migrated mid-build → memory architecture was redrafted → Constellation was promoted from a six-month plan to a doctrine-level commitment — all of these are evidence that the system was learning while it was being built. They are also why the principle framework matters: <em>every supersession is documented</em>. Future readers (regulators, partners, employers, customers) can read the chain and understand the reasoning.</p>
+<hr />
+<h2 id="13-comparative-context-why-this-paper-exists">13. Comparative Context (Why This Paper Exists)</h2>
+<p>Three baselines, drawn from Hermes's analysis (§XII + §XVII) — the vantage that could produce this comparison because the Anthropic-engineer framing is what it carries.</p>
+<h3 id="baseline-1-anthropic-internal-scale">Baseline 1 — Anthropic-internal scale</h3>
+<p>Anthropic operates a fleet of thousands of GPUs, hundreds of engineers, dedicated infrastructure / safety / research teams. The architectural choices Cerebro arrived at — multi-store memory, route contracts, surface parity, scope contracts — are <em>the same architectural choices</em> a frontier lab makes when its scale forces them.</p>
+<p>The difference: Anthropic arrives at these choices by employing a hundred infrastructure engineers and watching them write code. Cerebro arrives at them by employing one operator and forcing the principle framework to substitute for headcount.</p>
+<h3 id="baseline-2-fortune-500-consulting-build">Baseline 2 — Fortune-500 consulting build</h3>
+<p>A Fortune-500 company building an internal AI platform with comparable scope typically engages a $500K–$2M consulting engagement, 6–12 months, 4–8 consultants. Output: a roadmap, a reference architecture, a prototype, a fifty-slide deck.</p>
+<p>Cerebro reached "working prototype-control-plane with production instincts" (Codex's framing) in 45 days, solo, with a hardware budget under $5,000.</p>
+<p>The difference is not in architectural sophistication. It is in operational accountability: the consulting engagement leaves the customer to operate the system; Cerebro is operated by the same person who built it. <em>Build–operate alignment</em> is the missing constraint in the consulting model. It is the default constraint in Cerebro.</p>
+<h3 id="baseline-3-ai-startup-velocity-model">Baseline 3 — AI-startup velocity model</h3>
+<p>AI-startups optimize for time-to-feature. Documentation, governance, and reversibility are explicitly traded off against ship velocity. <em>"We'll fix it in the next sprint"</em> is the doctrine.</p>
+<p>Cerebro inverted the trade. Documentation, governance, and reversibility are first-class. Ship velocity is the residual. The bet is that for the regulated-industry buyer, <em>"audited, reversible, governed"</em> is worth more than <em>"shipped six weeks earlier."</em> That bet is what makes the GovCon wedge defensible.</p>
+<p>Hermes's exact phrasing: <em>"Cerebro is over-governed for a startup, but under-scaled. The architecture is ready for 1,000 users, but the current deployment is 1 user. This is pre-engineering for the commercial product, not over-engineering for the current scale."</em></p>
+<p>That is the bet, named explicitly.</p>
+<hr />
+<h2 id="14-roadmap-next-30-days-next-90-days-post-v1">14. Roadmap (Next 30 Days, Next 90 Days, Post-V1)</h2>
+<h3 id="next-30-days-consolidation">Next 30 Days — Consolidation</h3>
+<p>Reconciled from Codex's five priorities, Hermes's three immediate moves, and CC's V1-ship sequence. Ranked.</p>
+<ol>
+<li><strong>Hermes → Constellation Composer cutover readiness audit</strong> — full surface map of the production composer migration, including configuration, dependencies, fallbacks, and rollback paths. 1–2 weeks. Closes the F5 contradiction.</li>
+<li><strong>Architecture Health command</strong> — one report consolidating fleet reachability, services health, ledger consistency, memory budget, and diagram-currency into a single operator-readable snapshot. 1 week.</li>
+<li><strong>Skill Authority Matrix</strong> — generated report: skill / location / status / canonical / writes / dispatches / customer-shippable / superseded-by / last-verified. 3–5 days.</li>
+<li><strong>Runtime Status Ledger</strong> — <code>master-brain/state/runtime-status.json</code> for Hermes, Constellation, LiteLLM, Qdrant, CC daemon, kanban. 2–3 days.</li>
+<li><strong>Memory source-attribution enforcement</strong> — frontmatter <code>source_surface</code> / <code>host</code> / <code>session_id</code> / <code>written_at_utc</code> mandatory; lint at write time. 1 week.</li>
+<li><strong>Libro PL1 thin-slice distillation</strong> — package the customer-facing slice (memory + sessions + private retrieval + governed skills + optional routing). Do not ship internal complexity wholesale. 2–3 weeks.</li>
+<li><strong>Chaos day</strong> — simulate Qdrant corruption / LiteLLM down / prime-alpha offline / hub down. Execute documented reverts. 1 day execution + fix-up.</li>
+<li><strong>Smoke tests per skill</strong> — one happy-path test per skill. Catch regressions. 1–2 weeks.</li>
+<li><strong>Diagram-drift sessionend hook</strong> — if touched files include config/runtime paths, prompt for diagram update. 1–2 days.</li>
+</ol>
+<h3 id="next-90-days-productization">Next 90 Days — Productization</h3>
+<ul>
+<li><strong>Libro PL1 ship</strong> — first customer-deployable slice. Memory + sessions + governed skills.</li>
+<li><strong>BlackBox PL2 scoping</strong> — on-prem enterprise white-glove package. Higher-touch deployment model.</li>
+<li><strong>First Libro pilot</strong> — preferably a regulated-industry operator who can validate the GovCon thesis.</li>
+<li><strong>Public CMMC Level 2 / FedRAMP-fit mapping</strong> — formal compliance cross-walk document.</li>
+</ul>
+<h3 id="post-v1-sergeant-doctrine-l0l5">Post-V1 — Sergeant Doctrine (L0–L5)</h3>
+<p>The Sergeant doctrine is Cerebro's parked-but-developed IP for service-tier productization. The framing:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Service Posture</th>
+<th>Customer Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td>Self-serve install (Libro PL1)</td>
+<td>Solo operator, technical</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>Guided deployment</td>
+<td>Small business, partial technical</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>Managed setup + 90-day onboarding</td>
+<td>Mid-market, non-technical operator</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>Co-managed operations</td>
+<td>Mid-market, ongoing partnership</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>Fully managed</td>
+<td>Enterprise, regulated industry</td>
+</tr>
+<tr>
+<td>L5</td>
+<td>Custom + on-prem (BlackBox PL2)</td>
+<td>Defense, finance, healthcare</td>
+</tr>
+</tbody>
+</table>
+<p>Sergeant L0–L5 is the highest-leverage parked thread in the system. Neither Codex nor Hermes named it in their reviews; CC named it as the carry-forward most worth reviving post-V1. It is the answer to <em>"how does a one-operator company scale to ten customers?"</em> The doctrine exists; the productization is queued behind V1 ship.</p>
+<hr />
+<h2 id="15-what-three-vantage-triangulation-produces">15. What Three-Vantage Triangulation Produces</h2>
+<p>A note on method, because the method itself is part of the doctrine.</p>
+<p>This paper was synthesized from three independent peer architecture analyses, written blind. None of the three vantages read the other two before drafting.</p>
+<ul>
+<li><strong>Codex (OpenAI)</strong> — external SME, frontier-AI-infrastructure-reviewer stance, framed as a 45-day research-driven engineering sprint review.</li>
+<li><strong>Claude Code (nexus, inside-operator)</strong> — blind draft, biased by familiarity with the build, corrected toward executable next-moves.</li>
+<li><strong>Hermes-on-hub (Anthropic-engineer framing)</strong> — operations-side vantage, weighted toward operator workflow and scaling, comparative-baseline producer.</li>
+</ul>
+<p>The findings the three vantages converged on are what this paper anchors:</p>
+<ol>
+<li>The principle framework is the moat. (All three.)</li>
+<li>Reversibility is the strongest single architectural claim. (All three.)</li>
+<li>Memory architecture is the differentiator. (All three.)</li>
+<li>Constellation is the correct strategic direction. (All three.)</li>
+<li>The Hermes-Composer cutover is the load-bearing contradiction. (Codex + CC. Hermes was silent on this — its own production exception.)</li>
+<li>Skill catalog needs an authority matrix. (Codex + CC.)</li>
+<li>Operator-owned + audit-ready is the commercial wedge. (All three.)</li>
+<li>Consolidation &gt; new capability is the next phase. (All three. Highest-priority strategic move all three vantages agreed on.)</li>
+</ol>
+<p>The finding the vantages disagreed on — <em>"is memory fragmentation a bug or a feature?"</em> — was reconciled: the architecture is correct (fanout-read), the missing piece is source-attribution metadata, not unification.</p>
+<p>The most important methodological observation: <strong>Hermes's self-blind-spot was itself evidence.</strong> A single-vantage architecture review missed a load-bearing contradiction that two of three vantages independently named. The paper would have been weaker without the triangulation. The triangulation is part of why the paper exists.</p>
+<p>This is also part of the doctrine. Cerebro's review process for material architectural claims is: write blind from multiple vantages, reconcile honestly, document the disagreement, surface the blind spots. The same review process applies to this paper.</p>
+<hr />
+<h2 id="16-synthesis-verdict">16. Synthesis Verdict</h2>
+<p>All three peer vantages converged on a single high-level claim:</p>
+<blockquote>
+<p><strong>Cerebro is architecturally ahead of its product surface.</strong> The platform is genuinely sophisticated; the moat is the operating discipline (principle framework + reversibility + governance scaffolding), not the tools. The next 30 days should consolidate and ship, not extend. The white paper is the IP packaging of the doctrine that lets the next conversation start from <em>"what's the partnership?"</em> instead of <em>"what's this?"</em></p>
+</blockquote>
+<p>Codex's closing framing:</p>
+<blockquote>
+<p><em>"A first-time solo founder built, in under 45 days, the skeleton of an AI-native operating company: not just a chatbot, but a governed agent infrastructure stack with local compute, semantic memory, runtime orchestration, security controls, and a path toward productized operator-owned AI."</em></p>
+</blockquote>
+<p>That is the assessment this paper exists to make external.</p>
+<hr />
+<h2 id="17-what-cerebro-is-not">17. What Cerebro Is Not</h2>
+<p>In the interest of honest framing, five things the paper does not claim. These are heterogeneous by intent: one is a temporal product-state non-claim (#1, Libro has not shipped yet); two are boundary/scope non-claims (#2/#3, what Cerebro is not by design — multi-engineer team, novel-in-component); two are progressive-enforcement non-claims (#4/#5, the work is shipped on the primary surfaces and progressively extends to the rest):</p>
+<ol>
+<li>
+<p><strong>Cerebro is not a finished product, even as Libro PL1 ships.</strong> Libro PL1 — the free open-source scaffold packaging — ships concurrent with this paper. What Libro ships is the operator-installable Brain + sessions + governed skills scaffold; what it does <em>not</em> ship is the in-house Constellation Composer (the Hermes → native-runtime cutover queued at §14's 30-day milestone). Concretely: a customer installing Libro PL1 today runs Cerebro doctrine on the Hermes pattern-donor runtime, the same load-bearing contradiction this paper names in §8. The roadmap is real and queued; the production-cutover work is honestly named; the ship-with-the-paper posture is deliberate (the architecture is mature enough to scaffold for others before the runtime cutover finishes).</p>
+</li>
+<li>
+<p><strong>Cerebro is not a multi-engineer team.</strong> One operator built this. The architecture is shaped around solo-operator constraints — which is part of what makes the principle framework load-bearing rather than ceremonial. A team could move faster on raw feature throughput; a team would also lose the build-operate alignment that makes the doctrine enforceable.</p>
+</li>
+<li>
+<p><strong>Cerebro is not novel in any single component.</strong> Ollama is not novel. Qdrant is not novel. LiteLLM is not novel. Tailscale is not novel. The four-layer architecture is not novel. What is novel — and what this paper claims — is the <em>operating discipline</em> that binds these components into an auditable, reversible, sovereign system under one operator's stewardship.</p>
+</li>
+<li>
+<p><strong>Cerebro's memory architecture is unified at the read layer, not the write layer — and that's deliberate.</strong> An earlier (2026-04-29) decision proposed building a single <code>MemoryWriter</code> class that would fanout-write to every backend atomically. Phase H wave H-1 (2026-05-10) pivoted to the opposite shape — <strong>fanout-read</strong> — and the original write-contract decision was formally superseded on 2026-05-19 (<code>master-brain/decisions/2026-05-19-supersede-memorywriter-contract.md</code>). Per-source writes are accepted as correct: each backend (<code>.swarm/memory.db</code>, <code>.claude/memory.db</code>, <code>ruvector.db</code>, Qdrant on hub, <code>.auto-memory/</code> file memory, brain prose tier) owns its own write entry point; the curator + auto-memory bridge handle eventual consistency to the Qdrant truth tier. Unification lives at query time, through the <code>cerebro_memory_check</code> MCP tool, which fans a single action-text query across seven Qdrant collections in parallel (the W1 union), ranks via reciprocal-rank-fusion, and returns the top-3 results. The 11-key memory attribution contract (host / surface / tool / session / timestamp / etc.) is enforced on Claude Code Write/Edit via PreToolUse hook, on sessionend writes, on decision-doc commits, and on council-mode invocations. Non-CC surfaces (Hermes' internal memory manager, the Pulsar harvester, hub-side services) write to their own paths; their attribution coverage extends as the Hermes → Constellation Composer cutover lands (§14 30-day milestone). Fanout-read beats fanout-write on every dimension that matters for a solo-operator long-running-session reality: loose coupling, graceful degradation under per-backend failure, query-time token cost instead of per-turn fanout cost, and additive backend evolution (a new collection appends to the W1 list, no writer-refactor required).</p>
+</li>
+<li>
+<p><strong>State ledgers (runtime-status / model-route-contract / skill-authority-matrix) carry their own drift flags by design and do not yet auto-regenerate on every change.</strong> The ledgers function as single-source-of-truth for the subsets they cover, but each carries an <code>open_drift</code> array documenting known staleness — a deliberate choice to surface gaps rather than hide them. The reconciliation cron + stale-age warning script operates daily post-release. An assessor inspecting the ledgers today will see honest drift; an assessor inspecting them post-regen-cron will see fresh state. Both postures are documented.</p>
+</li>
+</ol>
+<hr />
+<h2 id="18-closing">18. Closing</h2>
+<p>The strongest version of Cerebro is not <em>"more agents."</em> It is:</p>
+<blockquote>
+<p><strong>A governed, operator-owned AI infrastructure stack where every model call, memory recall, workflow transition, and autonomous action has provenance, policy, and rollback.</strong></p>
+</blockquote>
+<p>That is what 45 days of build produced. The next 30 days consolidate it. The next 90 days ship Libro PL1 as the first customer-deployable distillation. Sergeant L0 through L5 service-tier productization is queued post-V1.</p>
+<p>If you read this paper and want to talk, the contact section below is real. Reach out about pilot deployment, doctrine adaptation, research collaboration, or whether the architecture holds up under stress-testing in your environment.</p>
+<p>The white paper is itself a living artifact. Supersession applies to the doctrine and to this document. If a finding here turns out wrong in the next 30 days, the next version will say so in the open with the supersession chain visible. That is what Reversibility commits to. That is what the audit trail is for.</p>
+<hr />
+<h2 id="19-contact-academic-engagement">19. Contact + Academic Engagement</h2>
+<p>Cerebro is open to three kinds of conversation.</p>
+<h3 id="govcon-engineering-procurement">GovCon engineering + procurement</h3>
+<p>If you handle AI-adjacent workloads under CMMC Level 2, FedRAMP Moderate, IL5, or SDVOSB set-aside acquisitions, the audit-ready posture is what makes Cerebro a fit. Sergeant L4 and L5 are built for that environment. Open to technical briefings, pilot conversations, and compliance cross-walks.</p>
+<h3 id="technology-leadership">Technology leadership</h3>
+<p>If you are a CTO, VP Engineering, or technical founder building an AI-native company at scale-of-one or scale-of-ten, the principle framework is the part worth borrowing. None of it is legally proprietary. All of it lives in <code>master-brain/decisions/</code> and <code>master-brain/awareness.md</code> in the Cerebro workspace, with the supersession chain as the audit trail. Read it. Adapt it. The doctrine improves when more operators stress-test it.</p>
+<h3 id="university-faculty-graduate-research">University faculty + graduate research</h3>
+<p>For researchers working on multi-agent systems with governance constraints, solo-operator AI infrastructure, reversibility in autonomous systems, memory architecture for long-running agents, or audit-readiness in regulated-industry AI: the artifact set behind this paper is research-grade primary data. That set includes 296 decision documents, roughly 80 session records, the <code>memory-corrections.log</code> append-only mutation history, the supersession chain, and three blind peer reviews. Open to case studies, joint papers, course-material licensing, and graduate-student research engagements. The 45-day research sprint is the literal description of the build, not a marketing line. The data supports the framing.</p>
+<h3 id="contact">Contact</h3>
+<p><strong>Founder</strong> · Cerebro Cyber Solutions
+<strong>Email:</strong> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#100;&#109;&#105;&#110;&#64;&#99;&#101;&#114;&#101;&#98;&#114;&#111;&#99;&#121;&#98;&#101;&#114;&#115;&#111;&#108;&#117;&#116;&#105;&#111;&#110;&#115;&#46;&#99;&#111;&#109;">&#97;&#100;&#109;&#105;&#110;&#64;&#99;&#101;&#114;&#101;&#98;&#114;&#111;&#99;&#121;&#98;&#101;&#114;&#115;&#111;&#108;&#117;&#116;&#105;&#111;&#110;&#115;&#46;&#99;&#111;&#109;</a>
+<strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/victor-gonzalez-2307b2206/">https://www.linkedin.com/in/victor-gonzalez-2307b2206/</a>
+<strong>Workspace artifacts:</strong> full path map available on request.</p>
+<p>Direct outreach welcomed for technical briefings, pilot conversations, or research engagement.</p>
+<hr />
+<h2 id="20-acknowledgments-and-influences">20. Acknowledgments and Influences</h2>
+<p>Cerebro is not a solo intellectual achievement. The doctrine drew on a deep bench of external thinkers, published frameworks, and operator-community wisdom. The architectural absorptions tracked in <code>master-brain/decisions/</code> represent fewer than half of the influences that shaped the build. The rest are below.</p>
+<p><strong>Direct technical influences (named, with absorption evidence in the workspace):</strong></p>
+<ul>
+<li><strong>Andrej Karpathy</strong> — autoresearch as an operating pattern, the behavioral-guidelines approach for reducing common LLM failure modes, and the <em>build-understanding-by-building</em> pedagogy. Cerebro's <code>karpathy-autoresearch</code> extraction and <code>karpathy-guidelines</code> skill are direct ports. The autoresearch substrate (<code>nemotron-30b-a3b</code>) is named after the pattern donor's research style.</li>
+<li><strong>Matt Pocock</strong> — TDD discipline, caveman compression mode, systematic-diagnosis patterns, and the <em>one-tool-call-per-checkpoint</em> operating tempo. Cerebro's <code>.agents/skills/</code> and several feedback memories trace back to Pocock-derived patterns.</li>
+<li><strong>Anthropic</strong> — Claude Code as the primary build surface (this paper was authored in it), the architectural transparency in Anthropic's published frameworks, and the model-card / responsible-scaling-policy framing that the audit-ready commercial story (§11) leans on.</li>
+<li><strong>OpenAI</strong> — Codex CLI as a peer-review surface and surgical-edit executor; the GPT-4-class reasoning route in the Senior Advisor tier; the model-naming-and-versioning discipline that informed Cerebro's Route Contract.</li>
+<li><strong>rUv (Reuven Cohen / ruvnet)</strong> — <code>claude-flow</code> / Ruflo V3 as the swarm-orchestration pattern donor and as the active auto-memory ingest substrate Cerebro runs daily. The 60+ agent catalog and hive-mind / mesh / hierarchical-queen topology vocabulary informed §7's deliberate decision NOT to deploy swarm as primary; the daemon, however, runs as a load-bearing capture surface on every Claude Code turn.</li>
+<li><strong>Nous Research</strong> — the Hermes agent-runtime pattern donor that anchored Cerebro's composer / seam / kanban / curator framing. Hermes was studied as a load-bearing pattern donor under Self-Sufficiency #9 and is being progressively replaced by Cerebro-native Constellation Composer.</li>
+<li><strong>Perplexity AI</strong> — Bumblebee (Apache 2.0) as the pattern donor for read-only supply-chain and developer-tool inventory scanning; the embedded-fixtures-with-fake-names self-test pattern; the exposure-catalog-as-data-driven-response shape that maps cleanly onto Cerebro's state-ledger discipline.</li>
+<li><strong>Tiago Forte</strong> — the <em>agentdb</em> family of skill packs (RAG, memory patterns, hyperbolic embedding indices) and the broader Building a Second Brain methodology that informed how Cerebro thinks about memory tiers and retrieval cadences.</li>
+</ul>
+<p><strong>Conceptual influences and operator-community wisdom:</strong></p>
+<ul>
+<li>The <strong>frontier-AI-lab community</strong> generally — published architecture decisions, public retrospectives, the willingness of frontier teams (Anthropic / OpenAI / DeepMind alumni networks) to write about what they learned. The three-vantage triangulation method (§15) is a direct extension of how frontier labs run peer review internally.</li>
+<li><strong>GovCon and SDVOSB peer operators</strong> — compliance war stories, CMMC L2 lived-experience accounts, FedRAMP-Moderate gotchas, IL5 procurement framings. The audit-ready commercial story (§11) would not exist without operators willing to share where the certification process actually breaks down.</li>
+<li><strong>University faculty and graduate researchers</strong> — published work on multi-agent systems, AI governance, reversibility-as-design-primitive, and memory-architecture for long-running agents. The principle framework is consciously academic in its supersession discipline because peer-reviewed CS research is the model for what <em>"audit trail"</em> should look like.</li>
+<li><strong>YouTube technical CTOs, frontier-AI founders, and long-form-interview circuit hosts</strong> — pattern languages for thinking about operator-owned infrastructure at scale; specific channels and shows that named load-bearing concepts before the engineering community had vocabulary for them.</li>
+<li><strong>The Cowork / Claude Code / Codex / Hermes plugin authors and skill ecosystem contributors</strong> — every absorbed pattern in <code>tools/</code> and <code>.agents/skills/</code> came from someone who built and published.</li>
+</ul>
+<p><strong>Pattern donors absorbed under Self-Sufficiency Principle #9.</strong> The pattern-donor ecosystem spans vendored tool roots and third-party skill packs from authors and teams whose published work shaped Cerebro. The full inventory — names, license, pinned commit, absorption notes, and per-tool <code>CEREBRO_CAVEATS.md</code> documenting what was ported and what was rejected — lives in <code>VENDORED_IMPORTS.md</code> and the per-tool caveats files alongside each vendored root. The pattern-donor relationship is asymmetric: Cerebro takes patterns but does not depend on the runtime, which is what makes Origin Policy 3b workable.</p>
+<p>Every name above represents work Cerebro stood on. None of these projects gave Cerebro permission to absorb them. All of them gave the engineering community a published artifact to learn from. <em>That is the part Cerebro is consciously trying to repay by publishing this paper.</em></p>
+<p><strong>Mobile planning captures — a load-bearing input pattern.</strong> A substantial fraction of Cerebro's doctrine and decision content did not originate at the workstation. It originated on a phone, dictated between meetings, in cars, on walks, on travel days. The <code>mobile-planning-capture</code> skill exists because the operator's best thinking happens when the operator is mobile. The Sergeant doctrine thread, the build-freeze pivot framing, the AAR / Lessons-Learned doctrine seed, the workspace-architecture clarifications, the Pulsar trigger discussion, the executive commandments around local tool stack activation — all of these were mobile captures first, structured decision docs second. Without the mobile-first capture pipeline, the build velocity documented in §12 is not physically possible for a one-operator company. The pattern donor on this surface is the broader voice-dictation-for-thinkers community (Voicepal / Audiopen / Whisper-piped-to-LLM workflows); the Cerebro implementation routes through <code>mobile-planning-capture</code> → file decision → memory pointer → MOC backlink as a standard ritual.</p>
+<p><strong>Methodology influences:</strong></p>
+<ul>
+<li>The <strong>Three-Surface Rule</strong> vocabulary borrows from operating-system design (kernel / user-space / driver) translated into agent-runtime context.</li>
+<li>The <strong>principle framework</strong> (Lockstep / Reversibility / Observability / Reproducibility / Least-Privilege) is a deliberate echo of CAP-theorem-era distributed-systems discipline. Cerebro is, architecturally, a distributed system with one operator.</li>
+<li>The <strong>Sergeant Framework L0-L5 service tiers</strong> (§14 Post-V1) borrow military-doctrine vocabulary deliberately. NCO-level operating discipline — Standard Operating Procedure, After-Action Review, Commander's Intent, Rules of Engagement — translates cleanly to agent-operations governance. The author's prior service is the source.</li>
+</ul>
+<p><strong>On attribution discipline.</strong> The absorption-pattern doctrine (§4) exists because nine absorptions in a 72-hour window in late April nearly overran governance bandwidth. The 5-step ritual — origin gate → vendored reference clone → swarm-analyze → cerebro-fit decision doc → wiring with snapshot tag — is what makes a pattern donor properly attributed rather than silently absorbed. <em>Every supersession is documented. Every pattern has a donor named in a decision doc.</em> That is the spirit of this acknowledgments section.</p>
+<p>If your work shaped Cerebro and you are not named above, that is a future attribution patch waiting to be filed. Email or DM.</p>
+<hr />
+<h2 id="21-references">21. References</h2>
+<h3 id="vendor-tooling">Vendor + tooling</h3>
+<ul>
+<li><strong>Anthropic Claude Code</strong> — primary build surface. <a href="https://docs.claude.com/claude-code">https://docs.claude.com/claude-code</a></li>
+<li><strong>Anthropic Claude API</strong> — Senior Advisor + executor tier substrate. <a href="https://docs.anthropic.com">https://docs.anthropic.com</a></li>
+<li><strong>Anthropic Responsible Scaling Policy</strong> — informs §11 audit-ready commercial story. <a href="https://www.anthropic.com/responsible-scaling-policy">https://www.anthropic.com/responsible-scaling-policy</a></li>
+<li><strong>OpenAI Codex CLI</strong> — surgical-edit peer surface (Pattern B). <a href="https://github.com/openai/codex">https://github.com/openai/codex</a></li>
+<li><strong>Ollama</strong> — local-inference runtime across all GPU nodes. <a href="https://ollama.com">https://ollama.com</a></li>
+<li><strong>LiteLLM</strong> — model routing proxy (hub container). <a href="https://docs.litellm.ai">https://docs.litellm.ai</a></li>
+<li><strong>Qdrant</strong> — vector database (hub container). <a href="https://qdrant.tech">https://qdrant.tech</a></li>
+<li><strong>PostgreSQL</strong> — LiteLLM backing store (hub container). <a href="https://www.postgresql.org">https://www.postgresql.org</a></li>
+<li><strong>Docker</strong> — substrate isolation primitive for the hub container set. <a href="https://docs.docker.com">https://docs.docker.com</a></li>
+<li><strong>Tailscale</strong> — private-mesh networking across the fleet. <a href="https://tailscale.com">https://tailscale.com</a></li>
+<li><strong>NVIDIA Nemotron</strong> — <code>nemotron-30b-a3b</code> autoresearch substrate. <a href="https://build.nvidia.com">https://build.nvidia.com</a></li>
+<li><strong>Google Gemma 4 31B</strong> — Senior Advisor local-tier model under Origin Policy 3a. <a href="https://ai.google.dev/gemma">https://ai.google.dev/gemma</a></li>
+</ul>
+<h3 id="pattern-donors-influences">Pattern donors + influences</h3>
+<ul>
+<li><strong>Andrej Karpathy</strong> — autoresearch operating pattern, behavioral-guidelines approach, build-understanding-by-building pedagogy. <a href="https://karpathy.ai">https://karpathy.ai</a></li>
+<li><strong>Matt Pocock</strong> — TDD discipline, systematic-diagnosis patterns, one-tool-call-per-checkpoint tempo. <a href="https://www.totaltypescript.com">https://www.totaltypescript.com</a></li>
+<li><strong>Tiago Forte</strong> — Building a Second Brain methodology informing memory tiers and retrieval cadences. <a href="https://fortelabs.com/blog/basboverview/">https://fortelabs.com/blog/basboverview/</a></li>
+<li><strong>rUv (Reuven Cohen) — <code>claude-flow</code> / Ruflo V3</strong> — swarm pattern donor; daemon runs as load-bearing memory-ingest substrate. <a href="https://github.com/ruvnet/claude-flow">https://github.com/ruvnet/claude-flow</a></li>
+<li><strong>Nous Research — Hermes</strong> — agent-runtime pattern donor for the composer / seam / kanban / curator framing. <a href="https://nousresearch.com">https://nousresearch.com</a></li>
+<li><strong>Perplexity AI — Bumblebee</strong> — Apache 2.0 pattern donor for read-only supply-chain scanning. <a href="https://github.com/perplexityai">https://github.com/perplexityai</a></li>
+</ul>
+<h3 id="academic-methodology">Academic + methodology</h3>
+<ul>
+<li><strong>Distributed-systems CAP theorem</strong> (Brewer 2000; Gilbert &amp; Lynch 2002) — informs the principle framework's posture on Lockstep / Reversibility / Observability / Reproducibility / Least-Privilege as architectural constraints applied to a one-operator distributed system.</li>
+<li><strong>Multi-rater agreement methodology</strong> (Cohen 1960; Fleiss 1971) — the social-science methodological ancestor of the three-vantage triangulation method used to produce this paper, adapted to multi-LLM peer architectural review.</li>
+<li><strong>NIST SP 800-171 / CMMC Level 2</strong> — compliance frame for the audit-ready commercial story (§11). <a href="https://csrc.nist.gov/pubs/sp/800/171/r3/final">https://csrc.nist.gov/pubs/sp/800/171/r3/final</a></li>
+<li><strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong> — governance-posture frame for the principle framework. <a href="https://www.nist.gov/itl/ai-risk-management-framework">https://www.nist.gov/itl/ai-risk-management-framework</a></li>
+<li><strong>NCO operating doctrine</strong> (US military Standard Operating Procedure / After-Action Review / Commander's Intent / Rules of Engagement traditions) — methodological frame for the Sergeant L0–L5 service-tier productization (§14 Post-V1).</li>
+</ul>
+<h3 id="internal-artifacts-available-on-request">Internal artifacts (available on request)</h3>
+<p>The primary sources behind this paper — the synthesis document, the three blind-review drafts (Codex, Claude Code, Hermes), the canonical principle decision documents, the <code>memory-corrections.log</code> append-only mutation history, the operating dashboards, and the supersession chain — live in the Cerebro workspace. None are public artifacts; all are available to engaged readers (research collaborators, GovCon evaluators, pilot prospects) under the engagement framings in §19. The full path map is available on request via the contact section above.</p>
+<hr />
+<p><em>Drafted 2026-05-21 from a three-vantage synthesis of independent blind reviews by Codex (OpenAI), Claude Code (Anthropic), and Hermes (Nous Research). This document supersedes earlier "draft" framings of Cerebro's public narrative.</em></p>
+<p><em>Cerebro Cyber Solutions · SDVOSB · 2026-05-21</em></p>
+</main>
+</body>
+</html>
