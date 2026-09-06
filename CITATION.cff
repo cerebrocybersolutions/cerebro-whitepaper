@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you cite this white paper, please use the metadata below."
+title: "Cerebro: Operator-Owned AI Infrastructure as a Governance Discipline"
+version: "2.2"
+date-released: "2026-08-15"
+license: CC-BY-ND-4.0
+authors:
+  - family-names: Gonzalez
+    given-names: Victor
+    affiliation: Cerebro Cyber Solutions
+url: "https://github.com/cerebrocybersolutions/cerebro-whitepaper"
+repository-code: "https://github.com/cerebrocybersolutions/cerebro-whitepaper"
+abstract: "A small operator can run an AI-native company if the company itself is implemented as infrastructure: memory, decisions, workflows, agents, models, and governance all live in versioned, inspectable, operator-owned systems."
+keywords:
+  - AI infrastructure
+  - governance
+  - operator-owned
+  - tamper-evident ledger
+preferred-citation:
+  type: report
+  title: "Cerebro: Operator-Owned AI Infrastructure as a Governance Discipline"
+  authors:
+    - family-names: Gonzalez
+      given-names: Victor
+      affiliation: Cerebro Cyber Solutions
+  institution:
+    name: Cerebro Cyber Solutions
+  year: 2026
+  month: 8
+  version: "2.2"
+  url: "https://github.com/cerebrocybersolutions/cerebro-whitepaper"
