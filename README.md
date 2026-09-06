@@ -22,7 +22,7 @@ python3 verify_hash_stamp.py VERIFICATION.md
 
 ## Prior editions
 
-- [v1.3.3 (2026-05-28)](releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf), the first public release. Superseded by v2.2 and kept for provenance.
+- [v1.3.3 (2026-05-28)](releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf), the first public release. It describes the May 2026 estate and is historical; superseded by v2.2 and kept for provenance.
 
 ## Cite
 
@@ -35,7 +35,7 @@ See [CITATION.cff](CITATION.cff). GitHub renders it under "Cite this repository"
 
 ## License
 
-See [LICENSE](LICENSE).
+The paper, its executive summary, prior editions, and the prose in this repository are licensed under CC BY-ND 4.0 ([LICENSE](LICENSE)). `verify_hash_stamp.py` is licensed under Apache-2.0 ([LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt)), the same license as libro and cortex-governor.
 
 ---
 © 2026 Cerebro Cyber Solutions

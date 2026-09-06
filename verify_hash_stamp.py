@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
-"""Assert a white-paper review-notes hash block matches the live artifact bytes.
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Cerebro Cyber Solutions
+"""Check that published white paper files match the sha256 stamps in a notes file.
 
-Built 2026-08-15 after the stamp drifted TWICE in one arc: the re-check brief
-pinned a full-DOCX sha that existed at no commit, and the review-notes block sat
-three commits stale. Both were caught by an adversarial reviewer, not by us. A
-prose "restamp in the same change" rule is a checker by intention; this is the
-mechanism.
+The stamp block names each artifact by its real filename, resolved against the
+notes file's own directory, one per line:
 
-The stamp block names artifacts by their REAL filename, resolved against the
-notes file's own directory:
+    - cerebro-white-paper-v2.2.pdf: `<64 hex characters>`
 
-    - cerebro-white-paper-v2.2.docx: `<64 hex>`
+Usage:
 
-ponytail: filenames are literal on purpose. The first cut inferred them from
-role labels ("full.docx"/"exec.docx") and the artifact directory holds twelve
-docx/pdf files across four paper versions, so every lookup went ambiguous and
-red — a false red that would have masked real drift.
+    python3 verify_hash_stamp.py VERIFICATION.md   # exit 0 clean, 1 drift
+    python3 verify_hash_stamp.py --self-test       # exercises pass, drift, missing file, missing block
 
-    python3 verify_hash_stamp.py <review-notes.md>     # exit 0 clean, 1 drift
-    python3 verify_hash_stamp.py --self-test
+A drift finding names the file and the first twelve characters of both hashes.
 """
 import hashlib
 import re
@@ -35,7 +30,7 @@ def sha256(p: Path) -> str:
 def check(notes: Path) -> list[str]:
     stamps = list(STAMP.finditer(notes.read_text()))
     if not stamps:
-        return [f"no hash stamps found in {notes.name} — block missing or reformatted"]
+        return [f"no hash stamps found in {notes.name}: block missing or reformatted"]
     bad = []
     for m in stamps:
         name, want = m["name"], m["sha"]
@@ -43,7 +38,7 @@ def check(notes: Path) -> list[str]:
         if not f.is_file():
             bad.append(f"{name}: stamped but not present beside {notes.name}")
         elif (got := sha256(f)) != want:
-            bad.append(f"{name}: stamped {want[:12]}… but bytes are {got[:12]}…")
+            bad.append(f"{name}: stamped {want[:12]} but bytes are {got[:12]}")
     return bad
 
 
@@ -58,7 +53,7 @@ def self_test() -> None:
         notes.write_text(f"- paper.docx: `{sha256(doc)}`\n")
         assert check(notes) == [], "clean stamp must pass"
         doc.write_bytes(b"tampered")
-        assert check(notes), "drifted stamp must FAIL"  # the case that shipped twice
+        assert check(notes), "drifted stamp must FAIL"
         doc.unlink()
         assert check(notes), "missing artifact must FAIL"
         notes.write_text("no stamps here\n")
@@ -74,9 +69,7 @@ if __name__ == "__main__":
         raise SystemExit(__doc__)
     notes = Path(sys.argv[1])
     if not notes.is_file():
-        # ponytail: the arg is cwd-relative, but the test runner's --only mode does not
-        # apply a suite's cwd. Fall back to script-relative so the check cannot pass or
-        # fail for a reason as uninteresting as which directory invoked it.
+        # Accept a path relative to this script as well as to the working directory.
         notes = Path(__file__).resolve().parent / sys.argv[1]
     findings = check(notes)
     for f in findings:

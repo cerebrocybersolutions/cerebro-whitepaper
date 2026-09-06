@@ -17,14 +17,6 @@ Exit 0 prints `hash stamp clean`. Any edited or swapped file exits 1 and names t
 - cerebro-white-paper-v2.2.pdf: `41121223e8bd8448e9435d53c1aaca53f8750cfe19ec1a20f54766a332afd551`
 - cerebro-white-paper-v2.2-executive-summary.pdf: `7998372c894d156f0ae0b86e99376e5fd63b148bc85559b45cc4353e25547eff`
 
-The same script guards the internal review notes for this edition; the two source documents
-(Word files, not published) carry these stamps in those notes:
-
-| Source document (not published) | sha256 |
-|---|---|
-| cerebro-white-paper-v2.2.docx | 86bc84c5d8077b91624547d45c59051b0a80498eb33c8b1ca19cf4b51902739d |
-| cerebro-white-paper-v2.2-executive-summary.docx | e48a0d1e2193cafb67b6199d694e74c697b7f1eb476fc879c9076845d91617c1 |
-
 `SHA256SUMS` lists every published file in the shape `shasum -a 256 -c SHA256SUMS` accepts.
 The unversioned filenames are byte-identical copies of the v2.2 files, kept so older links
 keep working.
