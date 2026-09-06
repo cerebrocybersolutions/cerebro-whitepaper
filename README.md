@@ -4,10 +4,38 @@
 
 > A small operator can run an AI-native company if the company itself is implemented as infrastructure: memory, decisions, workflows, agents, models, and governance all live in versioned, inspectable, operator-owned systems.
 
-- [Read the white paper (PDF)](cerebro-architecture-white-paper.pdf) — v2.2
-- [Executive summary (PDF)](cerebro-architecture-white-paper-executive-summary.pdf)
+## Current edition, v2.2 (2026-08-15)
 
-Companion to **Libro**, the open-source Ops scaffold for Claude Code: https://github.com/cerebrocybersolutions/libro
+- [Full white paper (PDF)](cerebro-white-paper-v2.2.pdf)
+- [Executive summary (PDF)](cerebro-white-paper-v2.2-executive-summary.pdf)
+
+`cerebro-architecture-white-paper.pdf` and `cerebro-architecture-white-paper-executive-summary.pdf` are byte-identical copies of the v2.2 files and stay in place so existing links keep working.
+
+## Verify what you downloaded
+
+[VERIFICATION.md](VERIFICATION.md) holds the sha256 stamps, a checker script, and the tamper demonstration for the hash-chained ledger the paper describes. Short form:
+
+```
+shasum -a 256 -c SHA256SUMS
+python3 verify_hash_stamp.py VERIFICATION.md
+```
+
+## Prior editions
+
+- [v1.3.3 (2026-05-28)](releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf), the first public release. Superseded by v2.2 and kept for provenance.
+
+## Cite
+
+See [CITATION.cff](CITATION.cff). GitHub renders it under "Cite this repository".
+
+## Companions
+
+- [Libro](https://github.com/cerebrocybersolutions/libro), the open-source Ops scaffold for Claude Code.
+- [cortex-governor](https://github.com/cerebrocybersolutions/cortex-governor), the policy gate and tamper-evident ledger.
+
+## License
+
+See [LICENSE](LICENSE).
 
 ---
 © 2026 Cerebro Cyber Solutions
