@@ -16,6 +16,7 @@ Exit 0 prints `hash stamp clean`. Any edited or swapped file exits 1 and names t
 
 - cerebro-white-paper-v2.3.pdf: `7f8c8314f3b01dbb3f4d14a17095d73bc1b433ccf5558ba0e70a3de581183f1d`
 - cerebro-white-paper-v2.3-executive-summary.pdf: `823c561679de0b7c66e421d929911657737efba7034d55c80456fa53a4101311`
+- 2026-10-04-v2.3-addendum-proof-of-use-packet.md: `4101a4f0d7a0916d0720f67bc3f840a6990011622c17b642d24352b9cf2ad6a3`
 - cerebro-white-paper-v2.2.pdf: `41121223e8bd8448e9435d53c1aaca53f8750cfe19ec1a20f54766a332afd551`
 - cerebro-white-paper-v2.2-executive-summary.pdf: `7998372c894d156f0ae0b86e99376e5fd63b148bc85559b45cc4353e25547eff`
 
@@ -54,6 +55,7 @@ implement them are:
 |---|---|---|---|
 | 2.3 (current) | 2026-10-04 | `cerebro-white-paper-v2.3.pdf` | `7f8c8314f3b01dbb…` |
 | 2.3 executive summary | 2026-10-04 | `cerebro-white-paper-v2.3-executive-summary.pdf` | `823c561679de0b7c…` |
+| 2.3 addendum | 2026-10-04 | `2026-10-04-v2.3-addendum-proof-of-use-packet.md` | `4101a4f0d7a0916d…` |
 | 2.2 (superseded) | 2026-08-15 | `cerebro-white-paper-v2.2.pdf` | `41121223e8bd8448…` |
 | 2.2 executive summary | 2026-08-15 | `cerebro-white-paper-v2.2-executive-summary.pdf` | `7998372c894d156f…` |
 | 1.3.3 | 2026-05-28 | `releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf` | `51285e145866653c…` |

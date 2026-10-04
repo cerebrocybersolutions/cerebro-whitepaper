@@ -8,6 +8,7 @@
 
 - [Full white paper (PDF)](cerebro-white-paper-v2.3.pdf)
 - [Executive summary (PDF)](cerebro-white-paper-v2.3-executive-summary.pdf)
+- [Addendum, 4 October 2026: the published bundle](2026-10-04-v2.3-addendum-proof-of-use-packet.md), binding this edition to ledger entries 3399 to 3428, bundle identity `8d5933bf…3dcc`.
 
 `cerebro-architecture-white-paper.pdf` and `cerebro-architecture-white-paper-executive-summary.pdf` are byte-identical copies of the v2.3 files and stay in place so existing links keep working.
 
