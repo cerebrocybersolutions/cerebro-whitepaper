@@ -4,12 +4,12 @@
 
 > A small operator can run an AI-native company if the company itself is implemented as infrastructure: memory, decisions, workflows, agents, models, and governance all live in versioned, inspectable, operator-owned systems.
 
-## Current edition, v2.2 (2026-08-15)
+## Current edition, v2.3 (2026-10-04)
 
-- [Full white paper (PDF)](cerebro-white-paper-v2.2.pdf)
-- [Executive summary (PDF)](cerebro-white-paper-v2.2-executive-summary.pdf)
+- [Full white paper (PDF)](cerebro-white-paper-v2.3.pdf)
+- [Executive summary (PDF)](cerebro-white-paper-v2.3-executive-summary.pdf)
 
-`cerebro-architecture-white-paper.pdf` and `cerebro-architecture-white-paper-executive-summary.pdf` are byte-identical copies of the v2.2 files and stay in place so existing links keep working.
+`cerebro-architecture-white-paper.pdf` and `cerebro-architecture-white-paper-executive-summary.pdf` are byte-identical copies of the v2.3 files and stay in place so existing links keep working.
 
 ## Verify what you downloaded
 
@@ -22,7 +22,8 @@ python3 verify_hash_stamp.py VERIFICATION.md
 
 ## Prior editions
 
-- [v1.3.3 (2026-05-28)](releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf), the first public release. It describes the May 2026 estate and is historical; superseded by v2.2 and kept for provenance.
+- [v2.2 (2026-08-15)](cerebro-white-paper-v2.2.pdf) and its [executive summary](cerebro-white-paper-v2.2-executive-summary.pdf), superseded by v2.3 and kept for provenance.
+- [v1.3.3 (2026-05-28)](releases/v1.3.3/cerebro-white-paper-v1.3.3-public.pdf), the first public release. It describes the May 2026 estate and is historical; superseded and kept for provenance.
 
 ## Cite
 
