@@ -7,6 +7,7 @@ The stamp block names each artifact by its real filename, resolved against the
 notes file's own directory, one per line:
 
     - cerebro-white-paper-v2.2.pdf: `<64 hex characters>`
+    - 2026-10-04-v2.3-addendum-proof-of-use-packet.md: `<64 hex characters>`
 
 Usage:
 
@@ -20,7 +21,7 @@ import re
 import sys
 from pathlib import Path
 
-STAMP = re.compile(r"^\s*-\s*`?(?P<name>[\w.-]+\.(?:docx|pdf))`?\s*:\s*`(?P<sha>[0-9a-f]{64})`", re.M)
+STAMP = re.compile(r"^\s*-\s*`?(?P<name>[\w.-]+\.(?:docx|pdf|md))`?\s*:\s*`(?P<sha>[0-9a-f]{64})`", re.M)
 
 
 def sha256(p: Path) -> str:
@@ -52,6 +53,7 @@ def self_test() -> None:
         notes = d / "notes.md"
         notes.write_text(f"- paper.docx: `{sha256(doc)}`\n")
         assert check(notes) == [], "clean stamp must pass"
+        note = d / "note.md"; note.write_text("x"); notes.write_text(f"- paper.docx: `{sha256(doc)}`\n- note.md: `{sha256(note)}`\n"); assert check(notes) == [], "md stamp must pass"
         doc.write_bytes(b"tampered")
         assert check(notes), "drifted stamp must FAIL"
         doc.unlink()
